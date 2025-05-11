@@ -1,17 +1,4 @@
 const {connectDB, sql} = require('../config/db');
-async function getUsers()
-{
-    try
-    {
-        let connection = await connectDB();
-        let result = await connection.request().query('SELECT * FROM [User]');
-        return result.recordset;
-    }
-    catch (err)
-    {
-        throw new Error(err.message);
-    }
-}
 
 async function getUserById(id)
 {
@@ -93,4 +80,4 @@ async function deleteUser(id)
     }
 }
 
-module.exports = {getUsers, getUserById, createUser, updateUser, deleteUser};
+module.exports = {getUserById, createUser, updateUser, deleteUser};

@@ -5,7 +5,6 @@ const {validateUser} = require("../validations/userValidation");
 
 const router = express.Router();
 
-router.get("/", userController.getUsers);
 router.get("/:id", validateId, userController.getUserById);
 router.post("/", validateUser, userController.createUser);
 router.put("/:id", validateId, validateUser, userController.updateUser);

@@ -1,17 +1,4 @@
-const {getUsers, getUserById, createUser, updateUser, deleteUser} = require("../models/userModel");
-
-exports.getAllUsers = async (res) =>
-{
-    try
-    {
-        const users = await getUsers();
-        res.status(200).json(users);
-    }
-    catch (error)
-    {
-        res.status(500).json({ message: 'users_not_found', error: error.message });
-    }
-}
+const {getUserById, createUser, updateUser, deleteUser} = require("../models/userModel");
 
 exports.getUserById = async (id, res) =>
 {
