@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const checkApiKey = require("./middleware/apiKeyHandler");
 const verifyJWT = require("./middleware/jwt");
 const authRoutes = require("./routes/authRoutes");
@@ -9,6 +10,13 @@ const edRoutes = require("./routes/educationRoutes");
 const pRoutes = require("./routes/portfolioRoutes");
 const version = "v1";
 const app = express();
+
+app.use(cors(
+    {
+        origin: "*",
+        credentials: false
+    }
+));
 
 app.use(express.json());
 app.use(checkApiKey);
