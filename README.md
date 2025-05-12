@@ -9,13 +9,16 @@ First, install the latest version of Node.js [here](https://nodejs.org/en). \
 Next, download and extract the ZIP file containing all the files. \
 Once the folder is open in any text editor, run the following commands in the terminal on the root directory (containing the folders `frontend` and `backend`) to install the needed dependencies:
 
-Firstly, for the back end installation, enter the backend folder with `cd backend/`. Then, run the following installations:
+Firstly, for the **back end** installation, enter the backend folder with `cd backend/`. Then, run the following installations:
 - `npm install express` to install Express.js.
 - `npm install mssql dotenv` to install MSSQL.
 - `npm install express-validator` to install the Express Validator.
 - `npm install jsonwebtoken` to install the JSON Web Token handler.
+- `npm install cors` to connect to the front end.
 
-Then, for the front end installation, go back to the root directory and enter the frontend folder with `cd frontend/`. Then, run `npm install`.
+Then, for the **front end** installation, go back to the root directory and enter the frontend folder with `cd frontend/`. Then, run:
+- `npm install`.
+- `npm install axios` to connect to the back end.
 
 Once all dependencies are installed, run the server with `node src/server.js` on the root directory.
 Now, you can use any API client such as Postman to test the API by sending as many GET, POST, PUT, and DELETE requests as you want. Once the server is running, choose the request type and enter the URL:
