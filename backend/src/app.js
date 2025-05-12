@@ -1,5 +1,7 @@
 const express = require("express");
 const checkApiKey = require("./middleware/apiKeyHandler");
+const verifyJWT = require("./middleware/jwt");
+const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const skillRoutes = require("./routes/skillRoutes");
 const expRoutes = require("./routes/experienceRoutes");
@@ -10,7 +12,8 @@ const app = express();
 
 app.use(express.json());
 app.use(checkApiKey);
-app.use(`/api/${version}/users`, userRoutes);
+app.use(`/api/${version}/auth`, authRoutes);
+app.use(`/api/${version}/users`, verifyJWT, userRoutes);
 app.use(`/api/${version}/skills`, skillRoutes);
 app.use(`/api/${version}/experience`, expRoutes);
 app.use(`/api/${version}/education`, edRoutes);
