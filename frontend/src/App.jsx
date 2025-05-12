@@ -9,10 +9,6 @@ import Footer from './components/Footer'
 import { Routes, Route } from 'react-router-dom'
 import Home from './screens/Home'
 import Experience from './screens/Experience'
-import Checklist from './screens/Checklist'
-import Blog from './screens/Blog'
-import Contact from './screens/Contact'
-import Post from './screens/Post'
 import '../scss/custom.scss'
 
 function App() {
@@ -25,10 +21,6 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='/experience' element={<Experience />}/>
-            <Route path='/checklist' element={<Checklist />} />
-            <Route path='/blog' element={<Blog />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/post/:id' element={<Post />} />
           </Routes>
         </div>
       </div>
