@@ -13,6 +13,7 @@ Firstly, for the back end installation, enter the backend folder with `cd backen
 - `npm install express` to install Express.js.
 - `npm install mssql dotenv` to install MSSQL.
 - `npm install express-validator` to install the Express Validator.
+- `npm install jsonwebtoken` to install the JSON Web Token handler.
 
 Then, for the front end installation, go back to the root directory and enter the frontend folder with `cd frontend/`. Then, run `npm install`.
 
