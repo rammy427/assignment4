@@ -31,15 +31,6 @@ function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/experience">Experience</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/checklist">Checklist</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/blog">Blog</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/contact">Contact</Link>
-              </li>
             </ul>
           </div>
         </div>
