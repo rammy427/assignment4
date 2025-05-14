@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { ALPHANUMERIC_REGEX, EMAIL_REGEX, PASSWORD_REGEX } from "../constants/constants";
+import {createItem} from "../services/api";
 
 function Form()
 {
@@ -26,19 +27,33 @@ function Form()
     const handleOnChange = (name, value, regex) => {
       setError({...error, [name]: !regex.test(value)? "Incorrect format!" : ""});
       setData({...data, [name]:value});
-      console.log(error);
-      console.log(data);
-      console.log(regex.test(value));
     };
     
     // Alert user depending on whether they signed up for the newsletter.
     const handleSubmit = (event) => {
       event.preventDefault();
-      // if (subscribed)
-      //   alert("Thank you for subscribing!");
-      // else
-      //   alert("Thank you for your information. If you wish to subscribe, please submit again.");
-      // console.log("Data submitted:", data);
+      console.log("Data submitted:", data);
+      // Check for formatting errors.
+      for (const key in error)
+      {
+        if (error.hasOwnProperty(key))
+        {
+          const value = error[key];
+          console.log(value);
+          // Exit the function if we found an error.
+          if (value) return;
+        }
+      }
+
+      // If no errors occurred, send request with the API.
+      // Create item with the "auth" path will send the POST login request.
+      createItem("auth/login", data).then(() =>
+      {
+        alert("You have successfully logged in!");
+      }).catch((error) =>
+      {
+        console.log(error);
+      })
     };
   
     return (
