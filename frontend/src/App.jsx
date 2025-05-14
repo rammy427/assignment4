@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 import { Routes, Route } from 'react-router-dom'
 import Home from './screens/Home'
 import Experience from './screens/Experience'
+import Login from './screens/Login'
 import '../scss/custom.scss'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='/experience' element={<Experience />}/>
+            <Route path='/login' element={<Login />}/>
           </Routes>
         </div>
       </div>
