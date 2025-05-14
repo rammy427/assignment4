@@ -2,10 +2,11 @@
 import React, { useState } from "react";
 import { ALPHANUMERIC_REGEX, EMAIL_REGEX, PASSWORD_REGEX } from "../constants/constants";
 import {createItem} from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 function Form()
 {
-    // let subscribed = false;
+    const navigate = useNavigate();
 
     const [data, setData] = useState({
       email: "",
@@ -47,9 +48,13 @@ function Form()
 
       // If no errors occurred, send request with the API.
       // Create item with the "auth" path will send the POST login request.
-      createItem("auth/login", data).then(() =>
+      createItem("auth/login", data).then((res) =>
       {
         alert("You have successfully logged in!");
+        const token = res.data.token;
+        console.log(token);
+        // Redirect to the home page.
+        navigate("/");
       }).catch((error) =>
       {
         console.log(error);
