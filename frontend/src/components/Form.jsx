@@ -36,7 +36,6 @@ function Form()
       console.log("Data submitted:", data);
       // Check for formatting errors.
       for (const key in error)
-      {
         if (error.hasOwnProperty(key))
         {
           const value = error[key];
@@ -44,7 +43,6 @@ function Form()
           // Exit the function if we found an error.
           if (value) return;
         }
-      }
 
       // If no errors occurred, send request with the API.
       // Create item with the "auth" path will send the POST login request.
@@ -57,8 +55,11 @@ function Form()
         navigate("/");
       }).catch((error) =>
       {
+        alert("Invalid credentials!");
+        setData({email: "", password: ""});
+        setError({email: "", password: ""});
         console.log(error);
-      })
+      });
     };
   
     return (

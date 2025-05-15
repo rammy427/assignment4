@@ -9,7 +9,7 @@ exports.loginHandler = async (req, res) =>
     {
         id: 159,
         email: "sebastian.ramirez4@upr.edu",
-        password: "0101010101",
+        password: "MeComiElApiKey",
         role: "API Destroyer"
     }
     try
