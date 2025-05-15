@@ -27,10 +27,11 @@ async function createUser(data)
             .input('firstname', sql.VarChar, data.firstName)
             .input('lastname', sql.VarChar, data.lastName)
             .input('role', sql.VarChar, data.role)
+            .input('description', sql.VarChar, data.description)
             .input('registeredon', sql.DateTime2, new Date())
             .query(`
-                INSERT INTO [User] (Email, Password, FirstName, LastName, Role, RegisteredOn)
-                VALUES (@email, @password, @firstname, @lastname, @role, @registeredon);
+                INSERT INTO [User] (Email, Password, FirstName, LastName, Role, Description, RegisteredOn)
+                VALUES (@email, @password, @firstname, @lastname, @role, @description, @registeredon);
                 SELECT SCOPE_IDENTITY() AS Id;
             `);
         return result.recordset[0].Id;
@@ -49,11 +50,13 @@ async function updateUser(id, data)
         await connection.request()
             .input('id', sql.Int, id)
             .input('email', sql.VarChar, data.email)
+            .input('password', sql.VarChar, data.password)
             .input('firstname', sql.VarChar, data.firstName)
             .input('lastname', sql.VarChar, data.lastName)
             .input('role', sql.VarChar, data.role)
+            .input('description', sql.VarChar, data.description)
             .query(`
-                UPDATE [User] SET Email = @email, FirstName = @firstname, LastName = @lastname, Role = @role
+                UPDATE [User] SET Email = @email, Password = @password, FirstName = @firstname, LastName = @lastname, Role = @role, Description = @description
                 WHERE Id = @id
             `);
         return true;
