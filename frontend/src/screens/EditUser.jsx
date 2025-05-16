@@ -131,7 +131,7 @@ function EditUser()
                 <div className="col">
                     <label htmlFor="description">Description</label>
                     <br />
-                    <textarea id="description" name="description" className="form-control bg-white" value={data.description} maxLength={500}
+                    <textarea id="description" name="description" className="form-control bg-white" value={data.description} maxLength={500} rows={5}
                     onChange={e => handleOnChange(e.target.name, e.target.value)} />
                     {
                         error.description && <span className="text-danger pb-2">{error.description}</span>
