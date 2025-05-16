@@ -26,4 +26,7 @@ export const deleteItem = (resource, id) => api.delete(`${resource}/${id}`);
 // Set the authorization header for all requests.
 export const applyAuthToken = () => api.defaults.headers.common["Authorization"] = `Bearer ${sessionStorage.getItem("token")}`;
 
+// Check if we are logged in.
+export const isLoggedIn = () => { return sessionStorage.getItem("token") != null };
+
 export default api;

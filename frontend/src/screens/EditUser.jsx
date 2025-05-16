@@ -1,16 +1,11 @@
 import { useState } from "react";
-import { editItem } from "../services/api";
+import { editItem, isLoggedIn } from "../services/api";
 import { EMAIL_REGEX, PASSWORD_REGEX, USER_ID } from "../constants/constants";
 import { useLocation } from "react-router-dom";
 
 function EditUser()
 {
-    // Check if user is logged in. If not logged in, stop immediately.
-    const isLoggedIn = () =>
-    {
-        return sessionStorage.getItem("token") != null;
-    }
-    
+    // Check if user is logged in. If not logged in, stop immediately.    
     if (!isLoggedIn())
         return (<h1>You must be logged in.</h1>);
 

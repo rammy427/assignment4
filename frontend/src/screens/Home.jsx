@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getItemById } from "../services/api";
+import { getItemById, isLoggedIn } from "../services/api";
 import Skills from "../components/Skills";
 import { USER_ID } from "../constants/constants";
 import { Link } from "react-router-dom";
@@ -16,11 +16,6 @@ function Home() {
 
     // Get user with API when the page is loaded.
     useEffect(() => getUser(), []);
-
-    const isLoggedIn = () =>
-    {
-        return sessionStorage.getItem("token") != null;
-    }
 
     return (
         <>
