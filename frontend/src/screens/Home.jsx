@@ -17,12 +17,20 @@ function Home() {
     // Get user with API when the page is loaded.
     useEffect(() => getUser(), []);
 
+    const isLoggedIn = () =>
+    {
+        return sessionStorage.getItem("token") != null;
+    }
+
     return (
         <>
-        <button>
-            {/* Passing current user info to the route to avoid another API call. */}
-            <Link to="/edit-user" state={{curUser: user}}>Edit User</Link>
-        </button>
+        {
+            // Render the edit user button only if logged in.
+            isLoggedIn() &&
+            <Link className="col-2 mx-auto" to="/edit-user" state={{curUser: user}}>
+                <button className="bg-primary rounded w-100 mb-3">Edit User</button>
+            </Link>
+        }
         <h1>{user.FirstName} {user.LastName}</h1>
         <img src="/src/assets/logo.jpeg" className="w-25 mt-3 mb-3 rounded-circle align-self-center"></img>
         <h2>{user.Role}</h2>
