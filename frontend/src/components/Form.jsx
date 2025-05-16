@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { EMAIL_REGEX, PASSWORD_REGEX } from "../constants/constants";
-import { createItem } from "../services/api";
+import { applyAuthToken, createItem } from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 function Form()
@@ -44,6 +44,7 @@ function Form()
         alert("You have successfully logged in!");
         const token = res.data.token;
         console.log(token);
+        applyAuthToken(token);
         // Redirect to the home page.
         navigate("/");
       })

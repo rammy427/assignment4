@@ -23,4 +23,7 @@ export const editItem = (resource, id, data) => api.put(`${resource}/${id}`, dat
 // DELETE request.
 export const deleteItem = (resource, id) => api.delete(`${resource}/${id}`);
 
+// Set the authorization header for all requests.
+export const applyAuthToken = (token) => api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
 export default api;
