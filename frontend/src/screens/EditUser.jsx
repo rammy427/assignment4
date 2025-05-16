@@ -5,9 +5,19 @@ import { useLocation } from "react-router-dom";
 
 function EditUser()
 {
+    // Check if user is logged in. If not logged in, stop immediately.
+    const isLoggedIn = () =>
+    {
+        return sessionStorage.getItem("token") != null;
+    }
+    
+    if (!isLoggedIn())
+        return (<h1>You must be logged in.</h1>);
+
     // Get current user from the link.
     // This is done to avoid another API call.
-    const curUser = useLocation().state.curUser;
+    const state = useLocation().state;
+    const curUser = (state != null) ? state.curUser : {};
 
     // Set form data initially to the current user values.
     const [data, setData] = useState(
