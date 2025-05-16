@@ -36,6 +36,7 @@ function Home() {
         <h2>{user.Role}</h2>
         <p className="col-8 mx-auto">{user.Description}</p>
 
+        <h2>My Skills</h2>
         {/* Get skills from the component. */}
         <Skills />
         </>
