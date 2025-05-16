@@ -43,7 +43,7 @@ function Form()
       {
         alert("You have successfully logged in!");
         // Save the token in local storage and apply headers.
-        localStorage.setItem("token", res.data.token);
+        sessionStorage.setItem("token", res.data.token);
         applyAuthToken();
         // Redirect to the home page.
         navigate("/");
