@@ -24,6 +24,6 @@ export const editItem = (resource, id, data) => api.put(`${resource}/${id}`, dat
 export const deleteItem = (resource, id) => api.delete(`${resource}/${id}`);
 
 // Set the authorization header for all requests.
-export const applyAuthToken = (token) => api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+export const applyAuthToken = () => api.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
 
 export default api;
