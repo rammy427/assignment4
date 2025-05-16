@@ -83,3 +83,4 @@ To prevent this, add the header `Api-Key` to the request. For the purpose of thi
 ## References
 
 - [Extract HTTP Request Headers](https://stackoverflow.com/questions/13147693/how-to-extract-request-http-headers-from-a-request-using-nodejs-connect)
+- [How to Pass Props Through React Router's Link Component](https://ui.dev/react-router-pass-props-to-link)
