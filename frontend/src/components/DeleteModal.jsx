@@ -12,7 +12,7 @@ function DeleteModal({type, id})
         deleteItem(`${type}/${USER_ID}`, id)
         .then(() =>
         {
-            alert(`Successfully deleted ${type}`);
+            alert(`Successfully deleted ${type}.`);
             // Redirect to the edit skills page.
             navigate("/edit-skills");
         })
@@ -39,7 +39,7 @@ function DeleteModal({type, id})
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" className="btn btn-danger" onClick={removeItem}>Delete</button>
+                    <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={removeItem}>Delete</button>
                 </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ function Skills({isEditing = false})
         .catch(error => console.log(error));
     }
 
-    useEffect(() => getSkills(), []);
+    useEffect(() => getSkills(), [skills]);
 
     return (
         <>
