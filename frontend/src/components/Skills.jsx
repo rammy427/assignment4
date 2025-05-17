@@ -3,7 +3,7 @@ import { getItemById } from "../services/api";
 import { USER_ID } from "../constants/constants";
 
 
-function Skills()
+function Skills({isEditing = false})
 {
     const [skills, setSkills] = useState([]);
 
@@ -39,6 +39,9 @@ function Skills()
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Proficiency</th>
+                    {
+                        isEditing && <th scope="col">Options</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +52,13 @@ function Skills()
                             <th scope="row">{skill.Id}</th>
                             <td>{skill.Name}</td>
                             <td>{skill.Proficiency}</td>
+                            {
+                                isEditing &&
+                                <td>
+                                    <button className="bg-primary rounded">Edit</button>
+                                    <button className="bg-danger rounded">Delete</button>
+                                </td>
+                            }
                         </tr>
                     )
                 }

@@ -12,6 +12,7 @@ import Experience from './screens/Experience'
 import Login from './screens/Login'
 import '../scss/custom.scss'
 import EditUser from './screens/EditUser'
+import EditSkills from './screens/EditSkills'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path='/login' element={<Login />}/>
             {/* Editing routes */}
             <Route path='/edit-user' element={<EditUser />}/>
+            <Route path='/edit-skills' element={<EditSkills />}/>
           </Routes>
         </div>
       </div>

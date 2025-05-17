@@ -32,6 +32,13 @@ function Home() {
         <p className="col-8 mx-auto">{user.Description}</p>
 
         <h2>My Skills</h2>
+        {
+            // Render the edit skills button only if logged in.
+            isLoggedIn() &&
+            <Link className="col-2 mx-auto" to="/edit-skills">
+                <button className="bg-primary rounded w-100 mb-3">Edit Skills</button>
+            </Link>
+        }
         {/* Get skills from the component. */}
         <Skills />
         </>
