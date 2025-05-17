@@ -24,10 +24,7 @@ exports.getExperiencesByUser = async (userId, res) =>
             else
             {
                 const exps = await getExperiencesByUser(userId);
-                if (exps.length === 0)
-                    res.status(404).json({message: "User has no experience"});
-                else
-                    res.status(200).json(exps);
+                res.status(200).json(exps);
             }
         }
         catch (error)

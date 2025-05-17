@@ -24,10 +24,7 @@ exports.getSkillsByUser = async (userId, res) =>
             else
             {
                 const skills = await getSkillsByUser(userId);
-                if (skills.length === 0)
-                    res.status(200).json({message: "User has no skills"});
-                else
-                    res.status(200).json(skills);
+                res.status(200).json(skills);
             }
         }
         catch (error)

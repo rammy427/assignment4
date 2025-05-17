@@ -37,10 +37,7 @@ exports.getEducationByUser = async (userId, res) =>
         else
         {
             const education = await getEducationByUser(userId);
-            if (education.length === 0)
-                res.status(200).json({message: "User has no education"});
-            else
-                res.status(200).json(education);
+            res.status(200).json(education);
         }
     }
     catch (error)
