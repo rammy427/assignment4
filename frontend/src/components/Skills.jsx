@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getItemById } from "../services/api";
 import { USER_ID } from "../constants/constants";
+import DeleteModal from "./DeleteModal";
 
 
 function Skills({isEditing = false})
@@ -18,21 +19,6 @@ function Skills({isEditing = false})
 
     return (
         <>
-        {/* <h2>My Skills</h2>
-        <div className="container bg-secondary p-2 rounded-3 text-center mb-5">
-            {
-                // Iterate through all the skills.
-                skills.map(
-                    (skill, index) => (
-                        <div key={index} className="row">
-                            <div className="col-6">{skill.Name}</div>
-                            <div className="col-6">{skill.Proficiency}</div>
-                        </div>
-                    )
-                )
-            }
-        </div> */}
-
         <table className="table w-50 mx-auto">
             <thead>
                 <tr>
@@ -48,15 +34,15 @@ function Skills({isEditing = false})
                 {
                     // Iterate through all the skills.
                     skills.map((skill, index) =>
-                        <tr>
+                        <tr key={index}>
                             <th scope="row">{skill.Id}</th>
                             <td>{skill.Name}</td>
                             <td>{skill.Proficiency}</td>
                             {
                                 isEditing &&
                                 <td>
-                                    <button className="bg-primary rounded">Edit</button>
-                                    <button className="bg-danger rounded">Delete</button>
+                                    <button className="btn btn-primary text-white">Edit</button>
+                                    <DeleteModal type="skills" id={skill.Id} />
                                 </td>
                             }
                         </tr>

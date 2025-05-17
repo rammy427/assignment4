@@ -23,7 +23,7 @@ function Home() {
             // Render the edit user button only if logged in.
             isLoggedIn() &&
             <Link className="col-2 mx-auto" to="/edit-user" state={{curUser: user}}>
-                <button className="bg-primary rounded w-100 mb-3">Edit User</button>
+                <button className="btn btn-primary text-white w-100 mb-3">Edit User</button>
             </Link>
         }
         <h1>{user.FirstName} {user.LastName}</h1>
@@ -36,7 +36,7 @@ function Home() {
             // Render the edit skills button only if logged in.
             isLoggedIn() &&
             <Link className="col-2 mx-auto" to="/edit-skills">
-                <button className="bg-primary rounded w-100 mb-3">Edit Skills</button>
+                <button className="btn btn-primary text-white w-100 mb-3">Edit Skills</button>
             </Link>
         }
         {/* Get skills from the component. */}
