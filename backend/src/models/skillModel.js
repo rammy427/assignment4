@@ -1,19 +1,5 @@
 const {connectDB, sql} = require("../config/db");
 
-async function getSkills()
-{
-    try
-    {
-        let connection = await connectDB();
-        let result = await connection.request().query('SELECT * FROM [Skill]');
-        return result.recordset;
-    }
-    catch (err)
-    {
-        throw new Error(err.message);
-    }
-}
-
 async function getSkillById(id)
 {
     try
@@ -106,4 +92,4 @@ async function deleteSkill(id, userId)
     }
 }
 
-module.exports = {getSkills, getSkillById, getSkillsByUser, addSkillToUser, updateSkill, deleteSkill};
+module.exports = {getSkillById, getSkillsByUser, addSkillToUser, updateSkill, deleteSkill};

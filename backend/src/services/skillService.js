@@ -1,18 +1,5 @@
-const {getSkills, getSkillById, getSkillsByUser, addSkillToUser, updateSkill, deleteSkill} = require("../models/skillModel");
+const {getSkillById, getSkillsByUser, addSkillToUser, updateSkill, deleteSkill} = require("../models/skillModel");
 const {getUserById} = require("../models/userModel");
-
-exports.getAllSkills = async (res) =>
-{
-    try
-    {
-        const skills = await getSkills();
-        res.status(200).json(skills);
-    }
-    catch (error)
-    {
-        res.status(500).json({message: "skills_not_found", error: error.message});
-    }
-}
 
 exports.getSkillsByUser = async (userId, res) =>
     {

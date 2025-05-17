@@ -1,11 +1,5 @@
 const skillService = require("../services/skillService");
 
-exports.getSkills = async (req, res) =>
-{
-    const skills = await skillService.getAllSkills(res);
-    return skills;
-}
-
 exports.getSkillsByUser = async (req, res) =>
 {
     const skills = await skillService.getSkillsByUser(req.params.userId, res);

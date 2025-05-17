@@ -5,7 +5,6 @@ const {validateSkill} = require("../validations/skillValidation");
 
 const router = express.Router();
 
-router.get("/", skillController.getSkills);
 router.get("/:userId", validateUserId, skillController.getSkillsByUser);
 router.post("/:userId", validateUserId, validateSkill, skillController.addSkillToUser);
 router.put("/:userId/:id", validateUserId, validateId, validateSkill, skillController.updateSkill);
