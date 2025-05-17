@@ -1,19 +1,5 @@
 const {connectDB, sql} = require("../config/db");
 
-async function getEducation()
-{
-    try
-    {
-        let connection = await connectDB();
-        let result = await connection.request().query("SELECT * FROM [Education]");
-        return result.recordset;
-    }
-    catch (err)
-    {
-        throw new Error(err.message);
-    }
-}
-
 async function getDegrees()
 {
     try
@@ -143,4 +129,4 @@ async function deleteEducation(id, userId)
     }
 }
 
-module.exports = {getEducation, getDegrees, getEducationById, getDegreeById, getEducationByUser, addEducationToUser, updateEducation, deleteEducation};
+module.exports = {getDegrees, getEducationById, getDegreeById, getEducationByUser, addEducationToUser, updateEducation, deleteEducation};

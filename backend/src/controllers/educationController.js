@@ -1,11 +1,5 @@
 const edService = require("../services/educationService");
 
-exports.getEducation = async (req, res) =>
-{
-    const education = await edService.getAllEducation(res);
-    return education;
-}
-
 exports.getDegrees = async (req, res) =>
 {
     const degrees = await edService.getDegrees(res);

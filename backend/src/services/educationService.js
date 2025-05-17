@@ -1,18 +1,5 @@
-const {getEducation, getDegrees, getDegreeById, getEducationByUser, addEducationToUser, getEducationById, updateEducation, deleteEducation} = require("../models/educationModel");
+const {getDegrees, getDegreeById, getEducationByUser, addEducationToUser, getEducationById, updateEducation, deleteEducation} = require("../models/educationModel");
 const {getUserById} = require("../models/userModel");
-
-exports.getAllEducation = async (res) =>
-{
-    try
-    {
-        const education = await getEducation();
-        res.status(200).json(education);
-    }
-    catch (error)
-    {
-        res.status(500).json({message: "education_not_found", error: error.message});
-    }
-}
 
 exports.getDegrees = async (res) =>
 {
