@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Skills from "../components/Skills";
 import { isLoggedIn } from "../services/api";
 
@@ -10,6 +11,9 @@ function EditSkills()
     return (
         <>
         <h1>Edit Skills</h1>
+        <Link className="col-2 mx-auto" to="/add-skill">
+            <button className="btn btn-success w-100 mb-3">Add Skill</button>
+        </Link>
         <Skills isEditing />
         </>
     )

@@ -13,6 +13,7 @@ import Login from './screens/Login'
 import '../scss/custom.scss'
 import EditUser from './screens/EditUser'
 import EditSkills from './screens/EditSkills'
+import AddSkill from './screens/AddSkill'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             {/* Editing routes */}
             <Route path='/edit-user' element={<EditUser />}/>
             <Route path='/edit-skills' element={<EditSkills />}/>
+            <Route path='/add-skill' element={<AddSkill />}/>
           </Routes>
         </div>
       </div>
