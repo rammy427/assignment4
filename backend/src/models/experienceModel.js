@@ -1,19 +1,5 @@
 const {connectDB, sql} = require("../config/db");
 
-async function getExperiences()
-{
-    try
-    {
-        let connection = await connectDB();
-        let result = await connection.request().query('SELECT * FROM [Experience]');
-        return result.recordset;
-    }
-    catch (err)
-    {
-        throw new Error(err.message);
-    }
-}
-
 async function getExperienceById(id)
 {
     try
@@ -114,4 +100,4 @@ async function deleteExperience(id, userId)
     }
 }
 
-module.exports = {getExperiences, getExperienceById, getExperiencesByUser, addExperienceToUser, updateExperience, deleteExperience};
+module.exports = {getExperienceById, getExperiencesByUser, addExperienceToUser, updateExperience, deleteExperience};

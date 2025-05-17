@@ -5,7 +5,6 @@ const {validateExperience} = require("../validations/experienceValidation");
 
 const router = express.Router();
 
-router.get("/", expController.getExperiences);
 router.get("/:userId", validateUserId, expController.getExperiencesByUser);
 router.post("/:userId", validateUserId, validateExperience, expController.addExperienceToUser);
 router.put("/:userId/:id", validateUserId, validateId, validateExperience, expController.updateExperience);

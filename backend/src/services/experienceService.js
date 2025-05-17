@@ -1,18 +1,5 @@
-const {getExperiences, getExperienceById, getExperiencesByUser, addExperienceToUser, updateExperience, deleteExperience} = require("../models/experienceModel");
+const {getExperienceById, getExperiencesByUser, addExperienceToUser, updateExperience, deleteExperience} = require("../models/experienceModel");
 const { getUserById } = require("../models/userModel");
-
-exports.getAllExperiences = async (res) =>
-{
-    try
-    {
-        const exps = await getExperiences();
-        res.status(200).json(exps);
-    }
-    catch (error)
-    {
-        res.status(500).json({message: "experiences_not_found", error: error.message});
-    }
-}
 
 exports.getExperiencesByUser = async (userId, res) =>
     {

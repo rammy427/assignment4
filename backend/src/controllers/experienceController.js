@@ -1,11 +1,5 @@
 const experienceService = require("../services/experienceService");
 
-exports.getExperiences = async (req, res) =>
-{
-    const exps = await experienceService.getAllExperiences(res);
-    return exps;
-}
-
 exports.getExperiencesByUser = async (req, res) =>
 {
     const exps = await experienceService.getExperiencesByUser(req.params.userId, res);
