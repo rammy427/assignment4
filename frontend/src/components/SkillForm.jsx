@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createItem, getItemById } from "../services/api";
+import { createItem, editItem, getItemById } from "../services/api";
 import { USER_ID } from "../constants/constants";
 import { useNavigate } from "react-router-dom";
 
@@ -59,19 +59,38 @@ function SkillForm({id = -1})
             }
 
         // If no errors occurred, send request with the API.
-        // POST request with "skills" resource.
-        createItem(`skills/${USER_ID}`, data)
-        .then(() =>
+        if (isEditing())
         {
-            alert("Successfully added skill to user!");
-            navigate("/edit-skills");
-        })
-        .catch(error =>
+            // We are editing the current skill. Send PUT request.
+            editItem(`skills/${USER_ID}`, id, data)
+            .then(() =>
+            {
+                alert("Saved changes to skill successfully!");
+                navigate("/edit-skills");
+            })
+            .catch(error =>
+            {
+                alert("Invalid fields!");
+                setError({name: "", proficiency: ""});
+                console.log(error);
+            });
+        }
+        else
         {
-            alert("Invalid fields!");
-            setError({name: "", proficiency: ""});
-            console.log(error);
-        });
+            // We are adding a new skill. Send POST request.
+            createItem(`skills/${USER_ID}`, data)
+            .then(() =>
+            {
+                alert("Added skill successfully!");
+                navigate("/edit-skills");
+            })
+            .catch(error =>
+            {
+                alert("Invalid fields!");
+                setError({name: "", proficiency: ""});
+                console.log(error);
+            });
+        }
     }
 
     return (
