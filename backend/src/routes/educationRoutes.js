@@ -5,6 +5,7 @@ const {validateEducation} = require("../validations/educationValidation");
 
 const router = express.Router();
 
+router.get("/degrees", edController.getDegrees);
 router.get("/:userId", validateUserId, edController.getEducationByUser);
 router.get("/:userId/:id", validateUserId, validateId, edController.getEducationById);
 router.post("/:userId", validateUserId, validateEducation, edController.addEducationToUser);
