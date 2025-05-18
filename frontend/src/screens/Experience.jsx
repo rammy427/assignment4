@@ -8,14 +8,27 @@ function Experience(){
             <h1>Experience</h1>
             {/* Accordion containing all the elements. */}
             <div className="accordion accordion-flush col-12 col-sm-6 mx-auto" id="flushAccordion">
-                {/* Class accordion. */}
+                {/* Education accordion. */}
                 <div className="accordion-item">
                     <h2 className="accordion-header">
                         <button className="accordion-button collapsed rounded-top" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Courses
+                            Education
                         </button>
                     </h2>
                     <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
+                        <div className="accordion-body">
+                            Test
+                        </div>
+                    </div>
+                </div>
+                {/* Class accordion. */}
+                <div className="accordion-item">
+                    <h2 className="accordion-header">
+                        <button className="accordion-button collapsed rounded-top" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            Courses
+                        </button>
+                    </h2>
+                    <div id="flush-collapseTwo" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body">
                             <ClassList />
                         </div>
@@ -24,11 +37,11 @@ function Experience(){
                 {/* Work and research accordion. */}
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                             Work and Research
                         </button>
                     </h2>
-                    <div id="flush-collapseTwo" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
+                    <div id="flush-collapseThree" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body">
                             <JobList />
                         </div>
@@ -37,11 +50,11 @@ function Experience(){
                 {/* Project accordion with carousel. */}
                 <div className="accordion-item">
                     <h2 className="accordion-header">
-                        <button className="accordion-button collapsed rounded-bottom" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <button className="accordion-button collapsed rounded-bottom" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
                             Projects
                         </button>
                     </h2>
-                    <div id="flush-collapseThree" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
+                    <div id="flush-collapseFour" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body mb-5">
                             <ProjectList />
                         </div>
