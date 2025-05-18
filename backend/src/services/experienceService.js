@@ -20,6 +20,22 @@ exports.getExperiencesByUser = async (userId, res) =>
         }
     }
 
+exports.getExperienceById = async (id, userId, res) =>
+{
+    try
+    {
+        const user = await getUserById(userId);
+        const exp = await getExperienceById(id);
+        if (!user) return res.status(404).json({message: "User not found"});
+        else if (!exp) return res.status(404).json({message: "Experience not found"});
+        else return res.status(200).json(exp);
+    }
+    catch (error)
+    {
+        res.status(500).json({message: "Error fetching experience", error: error.message});
+    }
+}
+
 exports.addExperienceToUser = async (userId, data, res) =>
 {
     try
@@ -47,7 +63,7 @@ exports.updateExperience = async (id, userId, data, res) =>
         const exp = await getExperienceById(id);
         if (!user)
             res.status(404).json({message: "User not found"});
-        else if (exp.length === 0)
+        else if (!exp)
             res.status(404).json({message: "Experience not found"});
         else
         {
@@ -69,8 +85,8 @@ exports.deleteExperience = async (id, userId, res) =>
         const exp = await getExperienceById(id);
         if (!user)
             res.status(404).json({message: "User not found"});
-        else if (exp.length === 0)
-            res.status(200).json({message: "Experience not found"});
+        else if (!exp)
+            res.status(404).json({message: "Experience not found"});
         else
         {
             await deleteExperience(id, userId);

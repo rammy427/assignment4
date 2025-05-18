@@ -6,6 +6,12 @@ exports.getExperiencesByUser = async (req, res) =>
     return exps;
 }
 
+exports.getExperienceById = async (req, res) =>
+{
+    const exp = await experienceService.getExperienceById(req.params.id, req.params.userId, res);
+    return exp;
+}
+
 exports.addExperienceToUser = async (req, res) =>
 {
     const newExp = await experienceService.addExperienceToUser(req.params.userId, req.body, res);
