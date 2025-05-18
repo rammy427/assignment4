@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getItemById } from "../services/api";
+import { deleteItem, getItemById } from "../services/api";
 import { USER_ID } from "../constants/constants";
-import DeleteModal from "./DeleteModal";
+import { Link } from "react-router-dom";
 
 
 function Skills({isEditing = false})
@@ -16,6 +16,13 @@ function Skills({isEditing = false})
     }
 
     useEffect(() => getSkills(), [skills]);
+
+    const removeSkill = (id) =>
+    {
+        deleteItem(`skills/${USER_ID}`, id)
+        .then(() => alert("Skill deleted successfully!"))
+        .catch(error => console.log(error));
+    }
 
     return (
         <>
@@ -44,7 +51,7 @@ function Skills({isEditing = false})
                                     <Link to={`/edit-skill/${skill.Id}`}>
                                         <button className="btn btn-primary text-white">Edit</button>
                                     </Link>
-                                    <DeleteModal type="skills" id={skill.Id} />
+                                    <button className="btn btn-danger" onClick={() => removeSkill(skill.Id)}>Delete</button>
                                 </td>
                             }
                         </tr>
