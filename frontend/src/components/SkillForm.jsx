@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { createItem } from "../services/api";
+import { useEffect, useState } from "react";
+import { createItem, getItemById } from "../services/api";
 import { USER_ID } from "../constants/constants";
 import { useNavigate } from "react-router-dom";
 
-function SkillForm()
+function SkillForm({id = -1})
 {
     const navigate = useNavigate();
+
+    const isAdding = () => { return id == -1 };
 
     const [data, setData] = useState(
         {
@@ -20,6 +22,16 @@ function SkillForm()
             proficiency: ""
         }
     );
+
+    const getSkill = () =>
+    {
+        if (!isAdding())
+            getItemById(`skills/${USER_ID}`, id)
+            .then(response => console.log(response))
+            .catch(error => console.log(error));
+    }
+
+    useEffect(() => getSkill(), []);
 
     const handleOnChange = (name, value, regex = /.*/) =>
     {
@@ -59,7 +71,6 @@ function SkillForm()
 
     return (
         <>
-        <h1>Add Skill</h1>
         <form className="col-sm-6 mx-auto" onSubmit={handleSubmit}>
             <div className="row">
                 <div className="col">

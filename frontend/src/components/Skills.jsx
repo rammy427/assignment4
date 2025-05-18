@@ -41,7 +41,9 @@ function Skills({isEditing = false})
                             {
                                 isEditing &&
                                 <td>
-                                    <button className="btn btn-primary text-white">Edit</button>
+                                    <Link to={`/edit-skill/${skill.Id}`}>
+                                        <button className="btn btn-primary text-white">Edit</button>
+                                    </Link>
                                     <DeleteModal type="skills" id={skill.Id} />
                                 </td>
                             }
