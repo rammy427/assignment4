@@ -54,11 +54,13 @@ exports.addEducationToUser = async (userId, data, res) =>
     try
     {
         const user = await getUserById(userId);
-        const degree = await getDegreeById(data.degreeId);
         if (!user)
             res.status(404).json({message: "User not found"});
-        else if (!degree)
-            res.status(404).json({message: "Degree not found"});
+        else if (data.degreeId != null)
+        {
+            const degree = await getDegreeById(data.degreeId);
+            if (!degree) res.status(404).json({message: "Degree not found"});
+        }
         else
         {
             const id = await addEducationToUser(userId, data);
@@ -77,13 +79,15 @@ exports.updateEducation = async (id, userId, data, res) =>
     {
         const user = await getUserById(userId);
         const ed = await getEducationById(id);
-        const degree = await getDegreeById(data.degreeId);
         if (!user)
             res.status(404).json({message: `User ${id} not found`});
         else if (!ed)
             res.status(404).json({message: `Education ${id} not found`});
-        else if (!degree)
-            res.status(404).json({message: `Degree ${id} not found`});
+        else if (data.degreeId != null)
+        {
+            const degree = await getDegreeById(data.degreeId);
+            if (!degree) res.status(404).json({message: `Degree ${data.degreeId} not found`});
+        }
         else
         {
             await updateEducation(id, userId, data);
