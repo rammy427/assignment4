@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function SkillForm({id = -1})
 {
     const navigate = useNavigate();
-
     const isEditing = () => { return id != -1 };
 
     const [data, setData] = useState(
@@ -36,7 +35,7 @@ function SkillForm({id = -1})
             .catch(error => console.log(error));
     }
 
-    useEffect(() => getSkill(), []);
+    useEffect(getSkill, []);
 
     const handleOnChange = (name, value, regex = /.*/) =>
     {
