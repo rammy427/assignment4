@@ -22,7 +22,7 @@ async function getEducationById(id)
         let result = await connection.request()
             .input('id', sql.Int, id)
             .query("SELECT * FROM [Education] WHERE Id = @id");
-        return result.recordset;
+        return result.recordset[0];
     }
     catch (err)
     {
@@ -38,7 +38,7 @@ async function getDegreeById(degreeId)
         let result = await connection.request()
             .input('degreeid', sql.Int, degreeId)
             .query("SELECT * FROM [Degree] WHERE Id = @degreeid");
-        return result.recordset;
+        return result.recordset[0];
     }
     catch (err)
     {

@@ -14,6 +14,22 @@ exports.getDegrees = async (res) =>
     }
 }
 
+exports.getEducationById = async (id, userId, res) =>
+{
+    try
+    {
+        const user = await getUserById(userId);
+        const education = await getEducationById(id);
+        if (!user) return res.status(404).json({message: "User not found"});
+        else if (!education) return res.status(404).json({message: "Education not found"});
+        else return res.status(200).json(education);
+    }
+    catch (error)
+    {
+        res.status(500).json({message: "Error fetching education", error: error.message});
+    }
+}
+
 exports.getEducationByUser = async (userId, res) =>
 {
     try
@@ -41,7 +57,7 @@ exports.addEducationToUser = async (userId, data, res) =>
         const degree = await getDegreeById(data.degreeId);
         if (!user)
             res.status(404).json({message: "User not found"});
-        else if (degree.length === 0)
+        else if (!degree)
             res.status(404).json({message: "Degree not found"});
         else
         {
@@ -64,9 +80,9 @@ exports.updateEducation = async (id, userId, data, res) =>
         const degree = await getDegreeById(data.degreeId);
         if (!user)
             res.status(404).json({message: `User ${id} not found`});
-        else if (ed.length === 0)
+        else if (!ed)
             res.status(404).json({message: `Education ${id} not found`});
-        else if (degree.length === 0)
+        else if (!degree)
             res.status(404).json({message: `Degree ${id} not found`});
         else
         {
@@ -88,7 +104,7 @@ exports.deleteEducation = async (id, userId, res) =>
         const ed = await getEducationById(id);
         if (!user)
             res.status(404).json({message: "User not found"});
-        else if (ed.length === 0)
+        else if (!ed)
             res.status(404).json({message: "Education not found"});
         else
         {

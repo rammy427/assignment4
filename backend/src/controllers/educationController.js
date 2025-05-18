@@ -6,6 +6,12 @@ exports.getDegrees = async (req, res) =>
     return degrees;
 }
 
+exports.getEducationById = async (req, res) =>
+{
+    const education = await edService.getEducationById(req.params.id, req.params.userId, res);
+    return education;
+}
+
 exports.getEducationByUser = async (req, res) =>
 {
     const education = await edService.getEducationByUser(req.params.userId, res);
