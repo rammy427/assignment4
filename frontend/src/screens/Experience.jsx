@@ -1,6 +1,8 @@
 import ClassList from "../components/ClassList";
+import EducationTable from "../components/EducationTable";
 import JobList from "../components/JobList";
 import ProjectList from "../components/ProjectList";
+import { isLoggedIn } from "../services/api";
 
 function Experience(){
     return (
@@ -17,7 +19,11 @@ function Experience(){
                     </h2>
                     <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body">
-                            Test
+                            {
+                                // If logged in, display edit button.
+                                isLoggedIn() && <button className="btn btn-primary text-white mb-3">Edit</button>
+                            }
+                            <EducationTable />
                         </div>
                     </div>
                 </div>
