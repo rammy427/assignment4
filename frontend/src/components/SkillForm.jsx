@@ -7,14 +7,14 @@ function SkillForm({id = -1})
 {
     const navigate = useNavigate();
 
-    const isAdding = () => { return id == -1 };
+    const isEditing = () => { return id != -1 };
 
     const [data, setData] = useState(
         {
             name: "",
             proficiency: ""
         }
-    );
+    )
 
     const [error, setError] = useState(
         {
@@ -25,9 +25,14 @@ function SkillForm({id = -1})
 
     const getSkill = () =>
     {
-        if (!isAdding())
+        if (isEditing())
             getItemById(`skills/${USER_ID}`, id)
-            .then(response => console.log(response))
+            .then(result => setData(
+                {
+                    name: result.data.Name,
+                    proficiency: result.data.Proficiency
+                }
+            ))
             .catch(error => console.log(error));
     }
 
