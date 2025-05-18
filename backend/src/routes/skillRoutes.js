@@ -6,7 +6,7 @@ const verifyJWT = require("../middleware/jwt");
 
 const router = express.Router();
 
-router.get("/:userId/:id", verifyJWT, validateUserId, validateId, skillController.getSkillById);
+router.get("/:userId/:id", validateUserId, validateId, skillController.getSkillById);
 router.get("/:userId", validateUserId, skillController.getSkillsByUser);
 router.post("/:userId", verifyJWT, validateUserId, validateSkill, skillController.addSkillToUser);
 router.put("/:userId/:id", verifyJWT, validateUserId, validateId, validateSkill, skillController.updateSkill);

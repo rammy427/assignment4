@@ -8,7 +8,7 @@ exports.getSkillById = async (id, userId, res) =>
         const user = await getUserById(userId);
         const skill = await getSkillById(id);
         if (!user) return res.status(404).json({message: "User not found"});
-        else if (skill.length === 0) return res.status(404).json({message: "Skill not found"});
+        else if (!skill) return res.status(404).json({message: "Skill not found"});
         else return res.status(200).json(skill);
     }
     catch (error)
@@ -63,7 +63,7 @@ exports.updateSkill = async (id, userId, data, res) =>
         const skill = await getSkillById(id);
         if (!user)
             res.status(404).json({message: "User not found"});
-        else if (skill.length === 0)
+        else if (!skill)
             res.status(404).json({message: "Skill not found"});
         else
         {
@@ -85,7 +85,7 @@ exports.deleteSkill = async (id, userId, res) =>
         const skill = await getSkillById(id);
         if (!user)
             res.status(404).json({message: "User not found"});
-        else if (skill.length === 0)
+        else if (!skill)
             res.status(404).json({message: "Skill not found"});
         else
         {

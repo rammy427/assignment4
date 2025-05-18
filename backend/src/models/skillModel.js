@@ -8,7 +8,7 @@ async function getSkillById(id)
         let result = await connection.request()
             .input('id', sql.Int, id)
             .query("SELECT * FROM [Skill] WHERE Id = @id");
-        return result.recordset;
+        return result.recordset[0];
     }
     catch (err)
     {
