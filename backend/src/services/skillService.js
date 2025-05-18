@@ -1,6 +1,22 @@
 const {getSkillById, getSkillsByUser, addSkillToUser, updateSkill, deleteSkill} = require("../models/skillModel");
 const {getUserById} = require("../models/userModel");
 
+exports.getSkillById = async (id, userId, res) =>
+{
+    try
+    {
+        const user = await getUserById(userId);
+        const skill = await getSkillById(id);
+        if (!user) return res.status(404).json({message: "User not found"});
+        else if (skill.length === 0) return res.status(404).json({message: "Skill not found"});
+        else return res.status(200).json(skill);
+    }
+    catch (error)
+    {
+        res.status(500).json({message: "Error fetching skill", error: error.message});
+    }
+}
+
 exports.getSkillsByUser = async (userId, res) =>
     {
         try
