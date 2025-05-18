@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createItem, editItem, getItemById } from "../services/api";
+import { createItem, editItem, getItemById, getItems } from "../services/api";
 import { USER_ID } from "../constants/constants";
 
 function EducationForm({id = -1})
 {
     const navigate = useNavigate();
     const isEditing = () => { return id != -1 };
+    const [degrees, setDegrees] = useState([]);
 
     const [data, setData] = useState(
         {
@@ -44,7 +45,18 @@ function EducationForm({id = -1})
             .catch(error => console.log(error));
     }
 
-    useEffect(getEducation, []);
+    const getDegrees = () =>
+    {
+        getItems("education/degrees")
+        .then(result => setDegrees(result.data))
+        .catch(error => console.log(error));
+    }
+    
+    useEffect(() =>
+    {
+        getDegrees();
+        getEducation();
+    }, [degrees]);
 
     const handleOnChange = (name, value, regex = /.*/) =>
     {
@@ -56,6 +68,11 @@ function EducationForm({id = -1})
     {
         event.preventDefault();
         console.log("Data submitted:", data);
+
+        // If degree ID is None, set its value to null.
+        if (data.degreeId === "")
+            data.degreeId = null
+
         // Check for formatting errors.
         for (const key in error)
             if (error.hasOwnProperty(key))
@@ -85,20 +102,19 @@ function EducationForm({id = -1})
         }
         else
         {
-            console.log(data);
-            // // We are adding a new skill. Send POST request.
-            // createItem(`education/${USER_ID}`, data)
-            // .then(() =>
-            // {
-            //     alert("Added education successfully!");
-            //     // navigate("/edit-educations");
-            // })
-            // .catch(error =>
-            // {
-            //     alert("Invalid fields!");
-            //     setError({name: "", proficiency: ""});
-            //     console.log(error);
-            // });
+            // We are adding a new skill. Send POST request.
+            createItem(`education/${USER_ID}`, data)
+            .then(() =>
+            {
+                alert("Added education successfully!");
+                // navigate("/edit-educations");
+            })
+            .catch(error =>
+            {
+                alert("Invalid fields!");
+                setError({name: "", proficiency: ""});
+                console.log(error);
+            });
         }
     }
 
@@ -120,10 +136,13 @@ function EducationForm({id = -1})
                 <div className="col">
                     <label htmlFor="degreeId">Degree ID</label>
                     <br />
-                    <input id="degreeId" name="degreeId" type="number" className="form-control bg-white" value={data.degreeId} onChange={e => handleOnChange(e.target.name, e.target.value)} />
-                    {
-                        error.degreeId && <span className="text-danger pb-2">{error.degreeId}</span>
-                    }
+                    <select id="degreeId" name="degreeId" className="form-select" onChange={e => handleOnChange(e.target.name, e.target.value)}>
+                        <option value={null} defaultValue>None</option>
+                        {
+                            // Iterate through all possible degrees.
+                            degrees.map(degree => <option key={degree.Id} value={degree.Id}>{degree.Id} - {degree.Name}</option>)
+                        }
+                    </select>
                 </div>
             </div>
             <div className="row">
