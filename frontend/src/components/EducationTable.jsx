@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getItemById } from "../services/api";
 import { USER_ID } from "../constants/constants";
 
-function EducationTable()
+function EducationTable({isEditing = false})
 {
     const [education, setEducation] = useState([]);
 

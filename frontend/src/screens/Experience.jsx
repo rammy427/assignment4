@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ClassList from "../components/ClassList";
 import EducationTable from "../components/EducationTable";
 import JobList from "../components/JobList";
@@ -21,7 +22,10 @@ function Experience(){
                         <div className="accordion-body">
                             {
                                 // If logged in, display edit button.
-                                isLoggedIn() && <button className="btn btn-primary text-white mb-3">Edit</button>
+                                isLoggedIn() &&
+                                <Link to="/edit-educations">
+                                    <button className="btn btn-primary text-white mb-3">Edit</button>
+                                </Link>
                             }
                             <EducationTable />
                         </div>
