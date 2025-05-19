@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createItem, editItem, getItemById } from "../services/api";
-import { USER_ID } from "../constants/constants";
+import { ALPHANUMERIC_REGEX, USER_ID } from "../constants/constants";
 
 function ExperienceForm({id = -1})
 {
@@ -134,7 +134,7 @@ function ExperienceForm({id = -1})
                     <label htmlFor="jobTitle">Title <span className="text-danger">*</span></label>
                     <br />
                     <input id="jobTitle" name="jobTitle" type="text" className="form-control bg-white" value={data.jobTitle} maxLength={100}
-                    onChange={e => handleOnChange(e.target.name, e.target.value)} required />
+                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)} required />
                     {
                         error.jobTitle && <span className="text-danger pb-2">{error.jobTitle}</span>
                     }
@@ -145,7 +145,7 @@ function ExperienceForm({id = -1})
                     <label htmlFor="company">Company</label>
                     <br />
                     <input id="company" name="company" type="text" className="form-control bg-white" value={data.company} maxLength={100}
-                    onChange={e => handleOnChange(e.target.name, e.target.value)} />
+                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)} />
                     {
                         error.company && <span className="text-danger pb-2">{error.company}</span>
                     }

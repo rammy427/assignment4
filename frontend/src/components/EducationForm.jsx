@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createItem, editItem, getItemById, getItems } from "../services/api";
-import { USER_ID } from "../constants/constants";
+import { ALPHANUMERIC_REGEX, USER_ID } from "../constants/constants";
 
 function EducationForm({id = -1})
 {
@@ -132,7 +132,7 @@ function EducationForm({id = -1})
                     <label htmlFor="institution">Institution <span className="text-danger">*</span></label>
                     <br />
                     <input id="institution" name="institution" type="text" className="form-control bg-white" value={data.institution} maxLength={150}
-                    onChange={e => handleOnChange(e.target.name, e.target.value)} required />
+                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)} required />
                     {
                         error.institution && <span className="text-danger pb-2">{error.institution}</span>
                     }
@@ -157,7 +157,7 @@ function EducationForm({id = -1})
                     <label htmlFor="fieldOfStudy">Field of Study</label>
                     <br />
                     <input id="fieldOfStudy" name="fieldOfStudy" type="text" className="form-control bg-white" value={data.fieldOfStudy} maxLength={150}
-                    onChange={e => handleOnChange(e.target.name, e.target.value)} />
+                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)} />
                     {
                         error.fieldOfStudy && <span className="text-danger pb-2">{error.fieldOfStudy}</span>
                     }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { editItem, getItemById, isLoggedIn } from "../services/api";
-import { EMAIL_REGEX, PASSWORD_REGEX, USER_ID } from "../constants/constants";
+import { ALPHANUMERIC_REGEX, EMAIL_REGEX, PASSWORD_REGEX, USER_ID } from "../constants/constants";
 import { useNavigate } from "react-router-dom";
 
 function EditUser()
@@ -118,7 +118,7 @@ function EditUser()
                     <label htmlFor="firstName">First Name <span className="text-danger">*</span></label>
                     <br />
                     <input id="firstName" name="firstName" type="text" className="form-control bg-white" value={data.firstName} maxLength={50}
-                    onChange={e => handleOnChange(e.target.name, e.target.value)} required />
+                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)} required />
                     {
                         error.firstName && <span className="text-danger pb-2">{error.firstName}</span>
                     }
@@ -129,7 +129,7 @@ function EditUser()
                     <label htmlFor="lastName">Last Name <span className="text-danger">*</span></label>
                     <br />
                     <input id="lastName" name="lastName" type="text" className="form-control bg-white" value={data.lastName} maxLength={150}
-                    onChange={e => handleOnChange(e.target.name, e.target.value)} required />
+                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)} required />
                     {
                         error.lastName && <span className="text-danger pb-2">{error.lastName}</span>
                     }
@@ -140,7 +140,7 @@ function EditUser()
                     <label htmlFor="role">Role</label>
                     <br />
                     <input id="role" name="role" type="text" className="form-control bg-white" value={data.role} maxLength={15}
-                    onChange={e => handleOnChange(e.target.name, e.target.value)} />
+                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)} />
                     {
                         error.role && <span className="text-danger pb-2">{error.role}</span>
                     }

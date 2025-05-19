@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createItem, editItem, getItemById } from "../services/api";
-import { USER_ID } from "../constants/constants";
+import { ALPHANUMERIC_REGEX, USER_ID } from "../constants/constants";
 import { useNavigate } from "react-router-dom";
 
 function SkillForm({id = -1})
@@ -100,7 +100,7 @@ function SkillForm({id = -1})
                     <label htmlFor="name">Name <span className="text-danger">*</span></label>
                     <br />
                     <input id="name" name="name" type="text" className="form-control bg-white" value={data.name} maxLength={100}
-                    onChange={e => handleOnChange(e.target.name, e.target.value)} required />
+                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)} required />
                     {
                         error.name && <span className="text-danger pb-2">{error.name}</span>
                     }
@@ -111,7 +111,7 @@ function SkillForm({id = -1})
                     <label htmlFor="proficiency">Proficiency</label>
                     <br />
                     <input id="proficiency" name="proficiency" type="text" className="form-control bg-white" value={data.proficiency} maxLength={50}
-                    onChange={e => handleOnChange(e.target.name, e.target.value)} />
+                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)} />
                     {
                         error.proficiency && <span className="text-danger pb-2">{error.proficiency}</span>
                     }
