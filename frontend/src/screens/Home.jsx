@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getItemById, isLoggedIn } from "../services/api";
+import { deleteItem, getItemById, isLoggedIn } from "../services/api";
 import Skills from "../components/Skills";
 import { USER_ID } from "../constants/constants";
 import { Link } from "react-router-dom";
@@ -14,6 +14,13 @@ function Home() {
         .catch(error => console.log(error));
     }
 
+    const removeUser = () =>
+    {
+        deleteItem("users", USER_ID)
+        .then(() => alert("User deleted successfully!"))
+        .catch(error => console.log(error));
+    }
+
     // Get user with API when the page is loaded.
     useEffect(getUser, []);
 
@@ -22,9 +29,12 @@ function Home() {
         {
             // Render the edit user button only if logged in.
             isLoggedIn() &&
-            <Link className="col-2 mx-auto" to="/edit-user">
-                <button className="btn btn-primary text-white w-100 mb-3">Edit User</button>
-            </Link>
+            <div className="row w-25 mx-auto mb-3">
+                <Link className="col-6" to="/edit-user">
+                    <button className="btn btn-primary text-white w-100">Edit User</button>
+                </Link>
+                <button className="col-6 btn btn-danger" onClick={removeUser}>Delete User</button>
+            </div>
         }
         <h1>{user.FirstName} {user.LastName}</h1>
         <img src="/src/assets/logo.jpeg" className="w-25 mt-3 mb-3 rounded-circle align-self-center"></img>

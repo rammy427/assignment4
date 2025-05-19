@@ -90,7 +90,7 @@ async function deleteUser(id)
         let connection = await connectDB();
         await connection.request()
             .input('Id', sql.Int, id)
-            .query('DELETE FROM [User] WHERE Id = @Id');
+            .query('UPDATE [User] SET Deleted = 1 WHERE Id = @Id');
         return true;
     }
     catch (err)
