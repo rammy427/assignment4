@@ -15,7 +15,7 @@ function ExperienceForm({id = -1})
             description: "",
             startDate: "",
             endDate: "",
-            isProject: false
+            projectRadio: 2
         }
     );
 
@@ -40,7 +40,7 @@ function ExperienceForm({id = -1})
                     description: result.data.Description,
                     startDate: (result.data.StartDate == null) ? "" : result.data.StartDate.slice(0, 10),
                     endDate: (result.data.EndDate == null) ? "" : result.data.EndDate.slice(0, 10),
-                    isProject: result.data.IsProject
+                    projectRadio: (result.data.IsProject) ? 0 : ((result.data.Company == null) ? 1 : 2)
                 }
             ))
             .catch(error => console.log(error));
@@ -73,11 +73,11 @@ function ExperienceForm({id = -1})
         const payload =
         {
             jobTitle: data.jobTitle,
-            company: (data.company == "") ? null : data.company,
+            company: (data.projectRadio == 1) ? null : data.company,
             description: data.description,
             startDate: (data.startDate == "") ? null : data.startDate,
             endDate: (data.endDate == "") ? null : data.endDate,
-            isProject: data.isProject
+            isProject: (data.projectRadio == 0)
         }
 
         // If no errors occurred, send request with the API.
@@ -118,15 +118,27 @@ function ExperienceForm({id = -1})
     return (
         <>
         <form className="col-sm-6 mx-auto" onSubmit={handleSubmit}>
-            <div className="row">
-                <div className="col">
-                    <label htmlFor="isProject">Is Project</label>
-                    <br />
-                    <input id="isProject" name="isProject" type="text" className="form-control bg-white" value={data.isProject} maxLength={5}
+            <div className="row w-50 mx-auto my-2">
+                <div className="col form-check">
+                    <input className="form-check-input" type="radio" name="projectRadio" id="project" value={0} checked={data.projectRadio == 0}
                     onChange={e => handleOnChange(e.target.name, e.target.value)} />
-                    {
-                        error.isProject && <span className="text-danger pb-2">{error.isProject}</span>
-                    }
+                    <label className="form-check-label" htmlFor="project">
+                        Project
+                    </label>
+                </div>
+                <div className="col form-check">
+                    <input className="form-check-input" type="radio" name="projectRadio" id="course" value={1} checked={data.projectRadio == 1}
+                    onChange={e => handleOnChange(e.target.name, e.target.value)} />
+                    <label className="form-check-label" htmlFor="course">
+                        Course
+                    </label>
+                </div>
+                <div className="col form-check">
+                    <input className="form-check-input" type="radio" name="projectRadio" id="job" value={2} checked={data.projectRadio == 2}
+                    onChange={e => handleOnChange(e.target.name, e.target.value)} />
+                    <label className="form-check-label" htmlFor="job">
+                        Job
+                    </label>
                 </div>
             </div>
             <div className="row">
@@ -142,10 +154,12 @@ function ExperienceForm({id = -1})
             </div>
             <div className="row">
                 <div className="col">
-                    <label htmlFor="company">Company</label>
+                    <label htmlFor="company">Company {data.projectRadio == 2 && <span className="text-danger">*</span>}</label>
                     <br />
-                    <input id="company" name="company" type="text" className="form-control bg-white" value={data.company} maxLength={100}
-                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)} />
+                    <input id="company" name="company" type="text" className="form-control bg-white"
+                    value={(data.projectRadio == 1) ? "" : data.company} maxLength={100}
+                    onChange={e => handleOnChange(e.target.name, e.target.value, ALPHANUMERIC_REGEX)}
+                    disabled={data.projectRadio == 1} required={data.projectRadio == 2} />
                     {
                         error.company && <span className="text-danger pb-2">{error.company}</span>
                     }
