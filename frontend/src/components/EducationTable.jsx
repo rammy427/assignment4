@@ -48,8 +48,8 @@ function EducationTable({isEditing = false})
                             <td>{ed.Institution}</td>
                             <td>{ed.DegreeId}</td>
                             <td>{ed.FieldOfStudy}</td>
-                            <td>{ed.StartDate}</td>
-                            <td>{ed.EndDate}</td>
+                            <td>{ed.StartDate.slice(0, 10)}</td>
+                            <td>{ed.EndDate.slice(0, 10)}</td>
                             {
                                 isEditing &&
                                 <td>

@@ -38,8 +38,8 @@ function ExperienceForm({id = -1})
                     jobTitle: result.data.JobTitle,
                     company: result.data.Company,
                     description: result.data.Description,
-                    startDate: result.data.StartDate,
-                    endDate: result.data.EndDate,
+                    startDate: (result.data.StartDate == null) ? "" : result.data.StartDate.slice(0, 10),
+                    endDate: (result.data.EndDate == null) ? "" : result.data.EndDate.slice(0, 10),
                     isProject: result.data.IsProject
                 }
             ))

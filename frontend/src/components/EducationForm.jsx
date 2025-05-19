@@ -38,8 +38,8 @@ function EducationForm({id = -1})
                     institution: result.data.Institution,
                     degreeId: result.data.DegreeId,
                     fieldOfStudy: result.data.FieldOfStudy,
-                    startDate: result.data.StartDate,
-                    endDate: result.data.EndDate
+                    startDate: (result.data.StartDate == null) ? "" : result.data.StartDate.slice(0, 10),
+                    endDate: (result.data.EndDate == null) ? "" : result.data.EndDate.slice(0, 10)
                 }
             ))
             .catch(error => console.log(error));

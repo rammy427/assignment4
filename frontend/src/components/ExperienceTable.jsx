@@ -42,8 +42,8 @@ function ExperienceTable({experiences})
                             <td>{exp.JobTitle}</td>
                             <td>{exp.Company}</td>
                             <td>{exp.Description}</td>
-                            <td>{exp.StartDate}</td>
-                            <td>{exp.EndDate}</td>
+                            <td>{(exp.StartDate == null) ? "" : exp.StartDate.slice(0, 10)}</td>
+                            <td>{(exp.EndDate == null) ? "" : exp.EndDate.slice(0, 10)}</td>
                             {
                                 isLoggedIn() &&
                                 <td>
