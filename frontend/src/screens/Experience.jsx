@@ -1,13 +1,40 @@
 import { Link } from "react-router-dom";
 import EducationTable from "../components/EducationTable";
-import { isLoggedIn } from "../services/api";
+import { getItemById, isLoggedIn } from "../services/api";
+import { useEffect, useState } from "react";
+import { USER_ID } from "../constants/constants";
 
 function Experience(){
+    const [projects, setProjects] = useState([]);
+    const [courses, setCourses] = useState([]);
+    const [jobs, setJobs] = useState([]);
+
+    const isProject = exp => exp.IsProject === true;
+    const isCourse = exp => exp.IsProject === false && exp.Company === null;
+    const isJob = exp => exp.IsProject === false && exp.Company !== null;
+
+    const getExperiences = () =>
+    {
+        getItemById("experience", USER_ID)
+        .then(result =>
+        {
+            setProjects(result.data.filter(isProject));
+            setCourses(result.data.filter(isCourse));
+            setJobs(result.data.filter(isJob));
+            console.log(projects);
+            console.log(courses);
+            console.log(jobs);
+        })
+        .catch(error => console.log(error));
+    }
+
+    useEffect(getExperiences, [projects, courses, jobs]);
+
     return (
         <>
             <h1>Experience</h1>
             {/* Accordion containing all the elements. */}
-            <div className="accordion accordion-flush col-12 col-sm-6 mx-auto" id="flushAccordion">
+            <div className="accordion accordion-flush col-12 col-sm-9 mx-auto" id="flushAccordion">
                 {/* Education accordion. */}
                 <div className="accordion-item">
                     <h2 className="accordion-header">
@@ -37,7 +64,6 @@ function Experience(){
                     </h2>
                     <div id="flush-collapseTwo" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body">
-                            <ClassList />
                         </div>
                     </div>
                 </div>
@@ -50,7 +76,6 @@ function Experience(){
                     </h2>
                     <div id="flush-collapseThree" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body">
-                            <JobList />
                         </div>
                     </div>
                 </div>
@@ -63,7 +88,6 @@ function Experience(){
                     </h2>
                     <div id="flush-collapseFour" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body mb-5">
-                            <ProjectList />
                         </div>
                     </div>
                 </div>
