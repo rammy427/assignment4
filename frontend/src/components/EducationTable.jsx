@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getItemById } from "../services/api";
+import { deleteItem, getItemById } from "../services/api";
 import { USER_ID } from "../constants/constants";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,14 @@ function EducationTable({isEditing = false})
         .catch(error => console.log(error));
     }
 
-    useEffect(getEducation, []);
+    useEffect(getEducation, [education]);
+
+    const removeEducation = (id) =>
+    {
+        deleteItem(`education/${USER_ID}`, id)
+        .then(() => alert("Education deleted successfully!"))
+        .catch(error => console.log(error));
+    }
 
     return (
         <>
