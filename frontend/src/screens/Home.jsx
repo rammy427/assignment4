@@ -31,9 +31,9 @@ function Home() {
             isLoggedIn() &&
             <div className="row w-25 mx-auto mb-3">
                 <Link className="col-6" to="/edit-user">
-                    <button className="btn btn-primary text-white w-100">Edit User</button>
+                    <button className="btn btn-primary text-white w-100"><i className="bi bi-pencil-square mx-1"></i>Edit User</button>
                 </Link>
-                <button className="col-6 btn btn-danger" onClick={removeUser}>Delete User</button>
+                <button className="col-6 btn btn-danger" onClick={removeUser}><i className="bi bi-trash3-fill mx-1"></i>Delete User</button>
             </div>
         }
         <h1>{user.FirstName} {user.LastName}</h1>

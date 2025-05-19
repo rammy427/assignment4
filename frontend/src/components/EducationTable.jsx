@@ -28,7 +28,7 @@ function EducationTable()
         {
             isLoggedIn() &&
             <Link className="col-2 mx-auto" to="/add-education">
-                <button className="btn btn-success w-25 mb-3">Add Education</button>
+                <button className="btn btn-success w-25 mb-3"><i className="bi bi-plus-lg mx-1"></i>Add Education</button>
             </Link>
         }
         <table className="table mx-auto">
@@ -59,10 +59,10 @@ function EducationTable()
                             {
                                 isLoggedIn() &&
                                 <td>
-                                    <Link to={`/edit-education/${ed.Id}`}>
-                                        <button className="btn btn-primary text-white">Edit</button>
+                                    <Link className="mx-1" to={`/edit-education/${ed.Id}`}>
+                                        <button className="btn btn-primary text-white"><i className="bi bi-pencil-square"></i></button>
                                     </Link>
-                                    <button className="btn btn-danger" onClick={() => removeEducation(ed.Id)}>Delete</button>
+                                    <button className="btn btn-danger" onClick={() => removeEducation(ed.Id)}><i className="bi bi-trash3-fill"></i></button>
                                 </td>
                             }
                         </tr>

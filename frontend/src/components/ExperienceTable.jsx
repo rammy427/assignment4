@@ -16,7 +16,7 @@ function ExperienceTable({experiences})
         {
             isLoggedIn() &&
             <Link className="col-2 mx-auto" to="/add-experience">
-                <button className="btn btn-success w-25 mb-3">Add Experience</button>
+                <button className="btn btn-success w-25 mb-3"><i className="bi bi-plus-lg mx-1"></i>Add Experience</button>
             </Link>
         }
         <table className="table mx-auto">
@@ -47,10 +47,10 @@ function ExperienceTable({experiences})
                             {
                                 isLoggedIn() &&
                                 <td>
-                                    <Link to={`/edit-experience/${exp.Id}`}>
-                                        <button className="btn btn-primary text-white">Edit</button>
+                                    <Link className="mx-1" to={`/edit-experience/${exp.Id}`}>
+                                        <button className="btn btn-primary text-white"><i className="bi bi-pencil-square"></i></button>
                                     </Link>
-                                    <button className="btn btn-danger" onClick={() => removeExperience(exp.Id)}>Delete</button>
+                                    <button className="btn btn-danger" onClick={() => removeExperience(exp.Id)}><i className="bi bi-trash3-fill"></i></button>
                                 </td>
                             }
                         </tr>

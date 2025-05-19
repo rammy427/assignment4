@@ -28,7 +28,7 @@ function SkillTable()
         {
             isLoggedIn() &&
             <Link className="col-2 mx-auto" to="/add-skill">
-                <button className="btn btn-success w-100 mb-3">Add Skill</button>
+                <button className="btn btn-success w-100 mb-3"><i className="bi bi-plus-lg mx-1"></i>Add Skill</button>
             </Link>
         }
         <table className="table w-50 mx-auto">
@@ -53,10 +53,10 @@ function SkillTable()
                             {
                                 isLoggedIn() &&
                                 <td>
-                                    <Link to={`/edit-skill/${skill.Id}`}>
-                                        <button className="btn btn-primary text-white">Edit</button>
+                                    <Link className="mx-1" to={`/edit-skill/${skill.Id}`}>
+                                        <button className="btn btn-primary text-white"><i className="bi bi-pencil-square"></i></button>
                                     </Link>
-                                    <button className="btn btn-danger" onClick={() => removeSkill(skill.Id)}>Delete</button>
+                                    <button className="btn btn-danger" onClick={() => removeSkill(skill.Id)}><i className="bi bi-trash3-fill"></i></button>
                                 </td>
                             }
                         </tr>
