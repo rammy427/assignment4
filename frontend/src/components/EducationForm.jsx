@@ -36,7 +36,7 @@ function EducationForm({id = -1})
             .then(result => setData(
                 {
                     institution: result.data.Institution,
-                    degreeId: result.data.degreeId,
+                    degreeId: result.data.DegreeId,
                     fieldOfStudy: result.data.FieldOfStudy,
                     startDate: result.data.StartDate,
                     endDate: result.data.EndDate
@@ -136,8 +136,9 @@ function EducationForm({id = -1})
                 <div className="col">
                     <label htmlFor="degreeId">Degree ID</label>
                     <br />
-                    <select id="degreeId" name="degreeId" className="form-select" onChange={e => handleOnChange(e.target.name, e.target.value)}>
-                        <option value={null} defaultValue>None</option>
+                    <select id="degreeId" name="degreeId" className="form-select" value={data.degreeId}
+                    onChange={e => handleOnChange(e.target.name, e.target.value)}>
+                        <option value={null}>None</option>
                         {
                             // Iterate through all possible degrees.
                             degrees.map(degree => <option key={degree.Id} value={degree.Id}>{degree.Id} - {degree.Name}</option>)
