@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getItemById } from "../services/api";
+import { createItem, editItem, getItemById } from "../services/api";
 import { USER_ID } from "../constants/constants";
 
 function ExperienceForm({id = -1})
@@ -39,7 +39,8 @@ function ExperienceForm({id = -1})
                     company: result.data.Company,
                     description: result.data.Description,
                     startDate: result.data.StartDate,
-                    endDate: result.data.EndDate
+                    endDate: result.data.EndDate,
+                    isProject: result.data.IsProject
                 }
             ))
             .catch(error => console.log(error));
@@ -67,12 +68,23 @@ function ExperienceForm({id = -1})
                 // Exit the function if we found an error.
                 if (value) return;
             }
+        
+        // Create new payload that corrects null inputs.
+        const payload =
+        {
+            jobTitle: data.jobTitle,
+            company: (data.company == "") ? null : data.company,
+            description: data.description,
+            startDate: (data.startDate == "") ? null : data.startDate,
+            endDate: (data.endDate == "") ? null : data.endDate,
+            isProject: data.isProject
+        }
 
         // If no errors occurred, send request with the API.
         if (isEditing())
         {
             // We are editing the current experience. Send PUT request.
-            editItem(`experience/${USER_ID}`, id, data)
+            editItem(`experience/${USER_ID}`, id, payload)
             .then(() =>
             {
                 alert("Saved changes to experience successfully!");
@@ -88,7 +100,7 @@ function ExperienceForm({id = -1})
         else
         {
             // We are adding a new experience. Send POST request.
-            createItem(`experience/${USER_ID}`, data)
+            createItem(`experience/${USER_ID}`, payload)
             .then(() =>
             {
                 alert("Added experience successfully!");
@@ -106,6 +118,17 @@ function ExperienceForm({id = -1})
     return (
         <>
         <form className="col-sm-6 mx-auto" onSubmit={handleSubmit}>
+            <div className="row">
+                <div className="col">
+                    <label htmlFor="isProject">Is Project</label>
+                    <br />
+                    <input id="isProject" name="isProject" type="text" className="form-control bg-white" value={data.isProject} maxLength={5}
+                    onChange={e => handleOnChange(e.target.name, e.target.value)} />
+                    {
+                        error.isProject && <span className="text-danger pb-2">{error.isProject}</span>
+                    }
+                </div>
+            </div>
             <div className="row">
                 <div className="col">
                     <label htmlFor="jobTitle">Title <span className="text-danger">*</span></label>

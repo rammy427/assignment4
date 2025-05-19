@@ -13,6 +13,12 @@ function ExperienceTable({experiences})
 
     return (
         <>
+        {
+            isLoggedIn() &&
+            <Link className="col-2 mx-auto" to="/add-experience">
+                <button className="btn btn-success w-25 mb-3">Add Experience</button>
+            </Link>
+        }
         <table className="table mx-auto">
             <thead>
                 <tr>
