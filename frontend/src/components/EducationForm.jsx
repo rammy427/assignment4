@@ -69,9 +69,15 @@ function EducationForm({id = -1})
         event.preventDefault();
         console.log("Data submitted:", data);
 
-        // If degree ID is None, set its value to null.
-        if (data.degreeId === "")
-            data.degreeId = null;
+        // Create new payload that corrects null inputs.
+        const payload =
+        {
+            institution: data.institution,
+            degreeId: (data.degreeId == "") ? null : data.degreeId,
+            fieldOfStudy: data.fieldOfStudy,
+            startDate: (data.startDate == "") ? null : data.startDate,
+            endDate: (data.endDate == "") ? null : data.endDate
+        };
 
         // Check for formatting errors.
         for (const key in error)
@@ -87,7 +93,7 @@ function EducationForm({id = -1})
         if (isEditing())
         {
             // We are editing the current education. Send PUT request.
-            editItem(`education/${USER_ID}`, id, data)
+            editItem(`education/${USER_ID}`, id, payload)
             .then(() =>
             {
                 alert("Saved changes to education successfully!");
@@ -103,7 +109,7 @@ function EducationForm({id = -1})
         else
         {
             // We are adding a new education. Send POST request.
-            createItem(`education/${USER_ID}`, data)
+            createItem(`education/${USER_ID}`, payload)
             .then(() =>
             {
                 alert("Added education successfully!");
@@ -138,7 +144,7 @@ function EducationForm({id = -1})
                     <br />
                     <select id="degreeId" name="degreeId" className="form-select" value={data.degreeId}
                     onChange={e => handleOnChange(e.target.name, e.target.value)}>
-                        <option value={null}>None</option>
+                        <option value="">None</option>
                         {
                             // Iterate through all possible degrees.
                             degrees.map(degree => <option key={degree.Id} value={degree.Id}>{degree.Id} - {degree.Name}</option>)
