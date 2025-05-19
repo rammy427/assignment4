@@ -86,3 +86,4 @@ To prevent this, add the header `Api-Key` to the request. For the purpose of thi
 - [How to Pass Props Through React Router's Link Component](https://ui.dev/react-router-pass-props-to-link)
 - [Using Axios to set request headers](https://blog.logrocket.com/using-axios-set-request-headers/)
 - [Regex for Password](https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a)
+- [Implementing Protected Routes In React JS](https://medium.com/@yogeshmulecraft/implementing-protected-routes-in-react-js-b39583be0740)

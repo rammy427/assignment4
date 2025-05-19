@@ -20,6 +20,7 @@ import EditEducations from './screens/EditEducations'
 import EditEducation from './screens/EditEducation'
 import AddExperience from './screens/AddExperience'
 import EditExperience from './screens/EditExperience'
+import NonDeletedRoutes from './components/NonDeletedRoutes'
 
 function App() {
   return (
@@ -29,22 +30,25 @@ function App() {
         <div className='card'>
           {/* Set up all the routes. */}
           <Routes>
-            <Route path='/' element={<Home />}/>
-            <Route path='/experience' element={<Experience />}/>
-            <Route path='/login' element={<Login />}/>
-            {/* Editing routes. */}
-            <Route path='/edit-user' element={<EditUser />}/>
-            {/* Edit skill routes. */}
-            <Route path='/edit-skills' element={<EditSkills />}/>
-            <Route path='/add-skill' element={<AddSkill />}/>
-            <Route path='/edit-skill/:id' element={<EditSkill />}/>
-            {/* Edit education routes. */}
-            <Route path='/edit-educations' element={<EditEducations />}/>
-            <Route path='/add-education' element={<AddEducation />}/>
-            <Route path='/edit-education/:id' element={<EditEducation />}/>
-            {/* Edit experience routes. */}
-            <Route path='/add-experience' element={<AddExperience />}/>
-            <Route path='/edit-experience/:id' element={<EditExperience />}/>
+            {/* All routes available if user is NOT removed. */}
+            <Route element={<NonDeletedRoutes />}>
+              <Route path='/' element={<Home />}/>
+              <Route path='/experience' element={<Experience />}/>
+              <Route path='/login' element={<Login />}/>
+              {/* Editing routes. */}
+              <Route path='/edit-user' element={<EditUser />}/>
+              {/* Edit skill routes. */}
+              <Route path='/edit-skills' element={<EditSkills />}/>
+              <Route path='/add-skill' element={<AddSkill />}/>
+              <Route path='/edit-skill/:id' element={<EditSkill />}/>
+              {/* Edit education routes. */}
+              <Route path='/edit-educations' element={<EditEducations />}/>
+              <Route path='/add-education' element={<AddEducation />}/>
+              <Route path='/edit-education/:id' element={<EditEducation />}/>
+              {/* Edit experience routes. */}
+              <Route path='/add-experience' element={<AddExperience />}/>
+              <Route path='/edit-experience/:id' element={<EditExperience />}/>
+            </Route>
           </Routes>
         </div>
       </div>
