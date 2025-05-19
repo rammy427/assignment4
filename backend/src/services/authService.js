@@ -1,22 +1,17 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const { getUserByEmail } = require("../models/userModel");
 // Login model referenced here.
 
 exports.loginHandler = async (req, res) =>
 {
     const {email, password} = req.body;
-    const user =
-    {
-        id: 159,
-        email: "sebastian.ramirez4@upr.edu",
-        password: "MeComiElApiKey",
-        role: "API Destroyer"
-    }
+    const user = await getUserByEmail(email);
     try
     {
-        if (user.email !== email || user.password !== password)
+        if (user.Email !== email || user.Password !== password)
             throw new Error("Invalid credentials");
-        const payload = {id: user.id, email: user.email, role: user.role};
+        const payload = {id: user.Id, email: user.Email, role: user.Role};
         const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {expiresIn: "1h"});
         res.status(200).json({token: token});
     }

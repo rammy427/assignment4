@@ -7,7 +7,23 @@ async function getUserById(id)
         let connection = await connectDB();
         let result = await connection.request()
             .input('Id', sql.Int, id)
-            .query('SELECT TOP 1 * FROM [User] WHERE Id = @Id');
+            .query('SELECT TOP 1 [Id], [Email], [FirstName], [LastName], [LastLogin], [Role], [Description], [RegisteredOn], [Deleted] FROM [User] WHERE Id = @Id');
+        return result.recordset[0];
+    }
+    catch (err)
+    {
+        throw new Error(err.message);
+    }
+}
+
+async function getUserByEmail(email)
+{
+    try
+    {
+        let connection = await connectDB();
+        let result = await connection.request()
+            .input('Email', sql.VarChar, email)
+            .query('SELECT TOP 1 * FROM [User] WHERE Email = @Email');
         return result.recordset[0];
     }
     catch (err)
@@ -83,4 +99,4 @@ async function deleteUser(id)
     }
 }
 
-module.exports = {getUserById, createUser, updateUser, deleteUser};
+module.exports = {getUserById, getUserByEmail, createUser, updateUser, deleteUser};
