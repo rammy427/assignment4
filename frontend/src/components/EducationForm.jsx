@@ -96,7 +96,7 @@ function EducationForm({id = -1})
             .catch(error =>
             {
                 alert("Invalid fields!");
-                setError({name: "", proficiency: ""});
+                setError({institution: "", degreeId: "", fieldOfStudy: "", startDate: "", endDate: ""});
                 console.log(error);
             });
         }
@@ -112,7 +112,7 @@ function EducationForm({id = -1})
             .catch(error =>
             {
                 alert("Invalid fields!");
-                setError({name: "", proficiency: ""});
+                setError({institution: "", degreeId: "", fieldOfStudy: "", startDate: "", endDate: ""});
                 console.log(error);
             });
         }
@@ -153,7 +153,7 @@ function EducationForm({id = -1})
                     <input id="fieldOfStudy" name="fieldOfStudy" type="text" className="form-control bg-white" value={data.fieldOfStudy} maxLength={150}
                     onChange={e => handleOnChange(e.target.name, e.target.value)} />
                     {
-                        error.fieldOfStudy && <span className="text-danger pb-2">{error.degreeId}</span>
+                        error.fieldOfStudy && <span className="text-danger pb-2">{error.fieldOfStudy}</span>
                     }
                 </div>
             </div>
