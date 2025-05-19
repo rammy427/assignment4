@@ -55,17 +55,15 @@ exports.addEducationToUser = async (userId, data, res) =>
     {
         const user = await getUserById(userId);
         if (!user)
-            res.status(404).json({message: "User not found"});
+            return res.status(404).json({message: "User not found"});
         else if (data.degreeId != null)
         {
             const degree = await getDegreeById(data.degreeId);
-            if (!degree) res.status(404).json({message: "Degree not found"});
+            if (!degree) return res.status(404).json({message: "Degree not found"});
         }
-        else
-        {
-            const id = await addEducationToUser(userId, data);
-            res.status(201).json({id: id});
-        }
+
+        const id = await addEducationToUser(userId, data);
+        res.status(201).json({id: id});
     }
     catch (error)
     {
@@ -80,19 +78,17 @@ exports.updateEducation = async (id, userId, data, res) =>
         const user = await getUserById(userId);
         const ed = await getEducationById(id);
         if (!user)
-            res.status(404).json({message: `User ${id} not found`});
+            return res.status(404).json({message: `User ${id} not found`});
         else if (!ed)
-            res.status(404).json({message: `Education ${id} not found`});
+            return res.status(404).json({message: `Education ${id} not found`});
         else if (data.degreeId != null)
         {
             const degree = await getDegreeById(data.degreeId);
-            if (!degree) res.status(404).json({message: `Degree ${data.degreeId} not found`});
+            if (!degree) return res.status(404).json({message: `Degree ${data.degreeId} not found`});
         }
-        else
-        {
-            await updateEducation(id, userId, data);
-            res.status(200).json({message: `Education ${id} for user ${userId} was successfully updated!`});
-        }
+        
+        await updateEducation(id, userId, data);
+        res.status(200).json({message: `Education ${id} for user ${userId} was successfully updated!`});
     }
     catch (error)
     {
