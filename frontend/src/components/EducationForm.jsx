@@ -97,7 +97,7 @@ function EducationForm({id = -1})
             .then(() =>
             {
                 alert("Saved changes to education successfully!");
-                navigate("/edit-educations");
+                navigate("/experience");
             })
             .catch(error =>
             {
@@ -113,7 +113,7 @@ function EducationForm({id = -1})
             .then(() =>
             {
                 alert("Added education successfully!");
-                navigate("/edit-educations");
+                navigate("/experience");
             })
             .catch(error =>
             {

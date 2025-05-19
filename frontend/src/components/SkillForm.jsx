@@ -65,7 +65,7 @@ function SkillForm({id = -1})
             .then(() =>
             {
                 alert("Saved changes to skill successfully!");
-                navigate("/edit-skills");
+                navigate("/");
             })
             .catch(error =>
             {
@@ -81,7 +81,7 @@ function SkillForm({id = -1})
             .then(() =>
             {
                 alert("Added skill successfully!");
-                navigate("/edit-skills");
+                navigate("/");
             })
             .catch(error =>
             {

@@ -12,11 +12,9 @@ import Experience from './screens/Experience'
 import Login from './screens/Login'
 import '../scss/custom.scss'
 import EditUser from './screens/EditUser'
-import EditSkills from './screens/EditSkills'
 import AddSkill from './screens/AddSkill'
 import EditSkill from './screens/EditSkill'
 import AddEducation from './screens/AddEducation'
-import EditEducations from './screens/EditEducations'
 import EditEducation from './screens/EditEducation'
 import AddExperience from './screens/AddExperience'
 import EditExperience from './screens/EditExperience'
@@ -38,11 +36,9 @@ function App() {
               {/* Editing routes. */}
               <Route path='/edit-user' element={<EditUser />}/>
               {/* Edit skill routes. */}
-              <Route path='/edit-skills' element={<EditSkills />}/>
               <Route path='/add-skill' element={<AddSkill />}/>
               <Route path='/edit-skill/:id' element={<EditSkill />}/>
               {/* Edit education routes. */}
-              <Route path='/edit-educations' element={<EditEducations />}/>
               <Route path='/add-education' element={<AddEducation />}/>
               <Route path='/edit-education/:id' element={<EditEducation />}/>
               {/* Edit experience routes. */}

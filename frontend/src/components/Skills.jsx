@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { deleteItem, getItemById } from "../services/api";
+import { deleteItem, getItemById, isLoggedIn } from "../services/api";
 import { USER_ID } from "../constants/constants";
 import { Link } from "react-router-dom";
 
-
-function Skills({isEditing = false})
+function Skills()
 {
     const [skills, setSkills] = useState([]);
 
@@ -26,6 +25,12 @@ function Skills({isEditing = false})
 
     return (
         <>
+        {
+            isLoggedIn() &&
+            <Link className="col-2 mx-auto" to="/add-skill">
+                <button className="btn btn-success w-100 mb-3">Add Skill</button>
+            </Link>
+        }
         <table className="table w-50 mx-auto">
             <thead>
                 <tr>
@@ -33,7 +38,7 @@ function Skills({isEditing = false})
                     <th scope="col">Name</th>
                     <th scope="col">Proficiency</th>
                     {
-                        isEditing && <th scope="col">Options</th>
+                        isLoggedIn() && <th scope="col">Options</th>
                     }
                 </tr>
             </thead>
@@ -46,7 +51,7 @@ function Skills({isEditing = false})
                             <td>{skill.Name}</td>
                             <td>{skill.Proficiency}</td>
                             {
-                                isEditing &&
+                                isLoggedIn() &&
                                 <td>
                                     <Link to={`/edit-skill/${skill.Id}`}>
                                         <button className="btn btn-primary text-white">Edit</button>

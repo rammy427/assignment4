@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { deleteItem, getItemById } from "../services/api";
+import { deleteItem, getItemById, isLoggedIn } from "../services/api";
 import { USER_ID } from "../constants/constants";
 import { Link } from "react-router-dom";
 
-function EducationTable({isEditing = false})
+function EducationTable()
 {
     const [education, setEducation] = useState([]);
 
@@ -25,6 +25,12 @@ function EducationTable({isEditing = false})
 
     return (
         <>
+        {
+            isLoggedIn() &&
+            <Link className="col-2 mx-auto" to="/add-education">
+                <button className="btn btn-success w-25 mb-3">Add Education</button>
+            </Link>
+        }
         <table className="table mx-auto">
             <thead>
                 <tr>
@@ -35,7 +41,7 @@ function EducationTable({isEditing = false})
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
                     {
-                        isEditing && <th scope="col">Options</th>
+                        isLoggedIn() && <th scope="col">Options</th>
                     }
                 </tr>
             </thead>
@@ -51,7 +57,7 @@ function EducationTable({isEditing = false})
                             <td>{ed.StartDate.slice(0, 10)}</td>
                             <td>{ed.EndDate.slice(0, 10)}</td>
                             {
-                                isEditing &&
+                                isLoggedIn() &&
                                 <td>
                                     <Link to={`/edit-education/${ed.Id}`}>
                                         <button className="btn btn-primary text-white">Edit</button>

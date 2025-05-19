@@ -42,13 +42,6 @@ function Experience(){
                     </h2>
                     <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body">
-                            {
-                                // If logged in, display edit button.
-                                isLoggedIn() &&
-                                <Link to="/edit-educations">
-                                    <button className="btn btn-primary text-white mb-3">Edit</button>
-                                </Link>
-                            }
                             <EducationTable />
                         </div>
                     </div>
