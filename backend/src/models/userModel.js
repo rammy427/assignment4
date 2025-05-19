@@ -1,4 +1,6 @@
 const {connectDB, sql} = require('../config/db');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 async function getUserById(id)
 {
@@ -62,11 +64,13 @@ async function updateUser(id, data)
 {
     try
     {
+        const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+
         let connection = await connectDB();
         await connection.request()
             .input('id', sql.Int, id)
             .input('email', sql.VarChar, data.email)
-            .input('password', sql.VarChar, data.password)
+            .input('password', sql.VarChar, hashedPassword)
             .input('firstname', sql.VarChar, data.firstName)
             .input('lastname', sql.VarChar, data.lastName)
             .input('role', sql.VarChar, data.role)
