@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { deleteItem, getItemById, isLoggedIn } from "../services/api";
-import Skills from "../components/Skills";
+import SkillTable from "../components/SkillTable";
 import { USER_ID } from "../constants/constants";
 import { Link } from "react-router-dom";
 
@@ -43,7 +43,7 @@ function Home() {
 
         <h2>My Skills</h2>
         {/* Get skills from the component. */}
-        <Skills />
+        <SkillTable />
         </>
     );
 }

@@ -3,7 +3,7 @@ import { deleteItem, getItemById, isLoggedIn } from "../services/api";
 import { USER_ID } from "../constants/constants";
 import { Link } from "react-router-dom";
 
-function Skills()
+function SkillTable()
 {
     const [skills, setSkills] = useState([]);
 
@@ -68,4 +68,4 @@ function Skills()
     );
 }
 
-export default Skills;
+export default SkillTable;
