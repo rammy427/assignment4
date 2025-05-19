@@ -17,6 +17,7 @@ import AddSkill from './screens/AddSkill'
 import EditSkill from './screens/EditSkill'
 import AddEducation from './screens/AddEducation'
 import EditEducations from './screens/EditEducations'
+import EditEducation from './screens/EditEducation'
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             {/* Edit education routes. */}
             <Route path='/edit-educations' element={<EditEducations />}/>
             <Route path='/add-education' element={<AddEducation />}/>
+            <Route path='/edit-education/:id' element={<EditEducation />}/>
           </Routes>
         </div>
       </div>

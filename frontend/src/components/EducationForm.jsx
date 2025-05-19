@@ -54,9 +54,9 @@ function EducationForm({id = -1})
     
     useEffect(() =>
     {
-        getDegrees();
         getEducation();
-    }, [degrees]);
+        getDegrees();
+    }, []);
 
     const handleOnChange = (name, value, regex = /.*/) =>
     {
@@ -71,7 +71,7 @@ function EducationForm({id = -1})
 
         // If degree ID is None, set its value to null.
         if (data.degreeId === "")
-            data.degreeId = null
+            data.degreeId = null;
 
         // Check for formatting errors.
         for (const key in error)
