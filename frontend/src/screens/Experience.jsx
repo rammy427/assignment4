@@ -3,6 +3,7 @@ import EducationTable from "../components/EducationTable";
 import { getItemById, isLoggedIn } from "../services/api";
 import { useEffect, useState } from "react";
 import { USER_ID } from "../constants/constants";
+import ExperienceTable from "../components/ExperienceTable";
 
 function Experience(){
     const [projects, setProjects] = useState([]);
@@ -21,9 +22,6 @@ function Experience(){
             setProjects(result.data.filter(isProject));
             setCourses(result.data.filter(isCourse));
             setJobs(result.data.filter(isJob));
-            console.log(projects);
-            console.log(courses);
-            console.log(jobs);
         })
         .catch(error => console.log(error));
     }
@@ -64,6 +62,7 @@ function Experience(){
                     </h2>
                     <div id="flush-collapseTwo" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body">
+                            <ExperienceTable experiences={courses} />
                         </div>
                     </div>
                 </div>
@@ -76,6 +75,7 @@ function Experience(){
                     </h2>
                     <div id="flush-collapseThree" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body">
+                            <ExperienceTable experiences={jobs} />
                         </div>
                     </div>
                 </div>
@@ -88,6 +88,7 @@ function Experience(){
                     </h2>
                     <div id="flush-collapseFour" className="accordion-collapse collapse" data-bs-parent="#flushAccordion">
                         <div className="accordion-body mb-5">
+                            <ExperienceTable experiences={projects} />
                         </div>
                     </div>
                 </div>
