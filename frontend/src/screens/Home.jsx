@@ -15,14 +15,14 @@ function Home() {
     }
 
     // Get user with API when the page is loaded.
-    useEffect(() => getUser(), []);
+    useEffect(getUser, []);
 
     return (
         <>
         {
             // Render the edit user button only if logged in.
             isLoggedIn() &&
-            <Link className="col-2 mx-auto" to="/edit-user" state={{curUser: user}}>
+            <Link className="col-2 mx-auto" to="/edit-user">
                 <button className="btn btn-primary text-white w-100 mb-3">Edit User</button>
             </Link>
         }

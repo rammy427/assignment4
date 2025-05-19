@@ -1,28 +1,24 @@
-import { useState } from "react";
-import { editItem, isLoggedIn } from "../services/api";
+import { useEffect, useState } from "react";
+import { editItem, getItemById, isLoggedIn } from "../services/api";
 import { EMAIL_REGEX, PASSWORD_REGEX, USER_ID } from "../constants/constants";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function EditUser()
 {
+    const navigate = useNavigate();
+
     // Check if user is logged in. If not logged in, stop immediately.    
     if (!isLoggedIn())
         return (<h1>You must be logged in.</h1>);
 
-    // Get current user from the link.
-    // This is done to avoid another API call.
-    const state = useLocation().state;
-    const curUser = (state != null) ? state.curUser : {};
-
-    // Set form data initially to the current user values.
     const [data, setData] = useState(
         {
-            email: curUser.Email,
-            password: curUser.Password,
-            firstName: curUser.FirstName,
-            lastName: curUser.LastName,
-            role: curUser.Role,
-            description: curUser.Description
+            email: "",
+            password: "",
+            firstName: "",
+            lastName: "",
+            role: "",
+            description: ""
         }
     );
 
@@ -36,6 +32,24 @@ function EditUser()
             description: ""
         }
     );
+
+    const getUser = () =>
+    {
+        getItemById("users", USER_ID)
+        .then(result => setData(
+            {
+                email: result.data.Email,
+                password: result.data.Password,
+                firstName: result.data.FirstName,
+                lastName: result.data.LastName,
+                role: result.data.Role,
+                description: result.data.Description
+            }
+        ))
+        .catch(error => console.log(error));
+    }
+
+    useEffect(getUser, []);
 
     const handleOnChange = (name, value, regex = /.*/) =>
     {
@@ -60,10 +74,10 @@ function EditUser()
         // If no errors occurred, send request with the API.
         // PUT request with "users" resource.
         editItem("users", USER_ID, data)
-        .then(res =>
+        .then(() =>
         {
             alert("Successfully edited user info!");
-            console.log(res);
+            navigate("/");
         })
         .catch(error =>
         {
@@ -93,7 +107,7 @@ function EditUser()
                     <label htmlFor="password">Password <span className="text-danger">*</span></label>
                     <br />
                     <input id="password" name="password" type="password" className="form-control bg-white" value={data.password} maxLength={250}
-                    onChange={e => handleOnChange(e.target.name, e.target.value, PASSWORD_REGEX)} required />
+                    onChange={e => handleOnChange(e.target.name, e.target.value, PASSWORD_REGEX)} />
                     {
                         error.password && <span className="text-danger pb-2">{error.password}</span>
                     }
