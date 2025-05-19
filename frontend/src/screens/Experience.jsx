@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom";
-import ClassList from "../components/ClassList";
 import EducationTable from "../components/EducationTable";
-import JobList from "../components/JobList";
-import ProjectList from "../components/ProjectList";
 import { isLoggedIn } from "../services/api";
 
 function Experience(){
