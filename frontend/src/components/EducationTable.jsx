@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getItemById } from "../services/api";
 import { USER_ID } from "../constants/constants";
+import { Link } from "react-router-dom";
 
 function EducationTable({isEditing = false})
 {
@@ -26,6 +27,9 @@ function EducationTable({isEditing = false})
                     <th scope="col">Field of Study</th>
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
+                    {
+                        isEditing && <th scope="col">Options</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +43,15 @@ function EducationTable({isEditing = false})
                             <td>{ed.FieldOfStudy}</td>
                             <td>{ed.StartDate}</td>
                             <td>{ed.EndDate}</td>
+                            {
+                                isEditing &&
+                                <td>
+                                    <Link to={`/edit-education/${ed.Id}`}>
+                                        <button className="btn btn-primary text-white">Edit</button>
+                                    </Link>
+                                    <button className="btn btn-danger" onClick={() => removeEducation(ed.Id)}>Delete</button>
+                                </td>
+                            }
                         </tr>
                     )
                 }

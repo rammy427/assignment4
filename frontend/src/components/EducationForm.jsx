@@ -86,12 +86,12 @@ function EducationForm({id = -1})
         // If no errors occurred, send request with the API.
         if (isEditing())
         {
-            // We are editing the current skill. Send PUT request.
+            // We are editing the current education. Send PUT request.
             editItem(`education/${USER_ID}`, id, data)
             .then(() =>
             {
                 alert("Saved changes to education successfully!");
-                // navigate("/edit-educations");
+                navigate("/edit-educations");
             })
             .catch(error =>
             {
@@ -102,12 +102,12 @@ function EducationForm({id = -1})
         }
         else
         {
-            // We are adding a new skill. Send POST request.
+            // We are adding a new education. Send POST request.
             createItem(`education/${USER_ID}`, data)
             .then(() =>
             {
                 alert("Added education successfully!");
-                // navigate("/edit-educations");
+                navigate("/edit-educations");
             })
             .catch(error =>
             {
