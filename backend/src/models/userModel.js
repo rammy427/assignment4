@@ -38,6 +38,7 @@ async function createUser(data)
 {
     try
     {
+        const hashedPassword = await bcrypt.hash(data.password, saltRounds);
         let connection = await connectDB();
         let result = await connection.request()
             .input('email', sql.VarChar, data.email)
@@ -65,7 +66,6 @@ async function updateUser(id, data)
     try
     {
         const hashedPassword = await bcrypt.hash(data.password, saltRounds);
-
         let connection = await connectDB();
         await connection.request()
             .input('id', sql.Int, id)
@@ -75,10 +75,13 @@ async function updateUser(id, data)
             .input('lastname', sql.VarChar, data.lastName)
             .input('role', sql.VarChar, data.role)
             .input('description', sql.VarChar, data.description)
-            .query(`
+            .query((data.password != "") ? `
                 UPDATE [User] SET Email = @email, Password = @password, FirstName = @firstname, LastName = @lastname, Role = @role, Description = @description
-                WHERE Id = @id
-            `);
+                WHERE Id = @id`
+                :
+                `UPDATE [User] SET Email = @email, FirstName = @firstname, LastName = @lastname, Role = @role, Description = @description
+                WHERE Id = @id`
+            );
         return true;
     }
     catch (err)

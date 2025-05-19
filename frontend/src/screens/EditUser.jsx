@@ -39,7 +39,7 @@ function EditUser()
         .then(result => setData(
             {
                 email: result.data.Email,
-                password: result.data.Password,
+                password: "",
                 firstName: result.data.FirstName,
                 lastName: result.data.LastName,
                 role: result.data.Role,
