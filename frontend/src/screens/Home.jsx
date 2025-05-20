@@ -29,11 +29,11 @@ function Home() {
         {
             // Render the edit user button only if logged in.
             isLoggedIn() &&
-            <div className="row w-25 mx-auto mb-3">
-                <Link className="col-6" to="/edit-user">
+            <div className="row w-100 mx-auto mb-3 justify-content-center">
+                <Link className="col col-lg-2" to="/edit-user">
                     <button className="btn btn-primary text-white w-100"><i className="bi bi-pencil-square mx-1"></i>Edit User</button>
                 </Link>
-                <button className="col-6 btn btn-danger" onClick={removeUser}><i className="bi bi-trash3-fill mx-1"></i>Delete User</button>
+                <button className="col col-lg-2 btn btn-danger" onClick={removeUser}><i className="bi bi-trash3-fill mx-1"></i>Delete User</button>
             </div>
         }
         <h1>{user.FirstName} {user.LastName}</h1>
